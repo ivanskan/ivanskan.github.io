@@ -1,39 +1,54 @@
 @CHARSET "UTF-8";
-*{
-  margin:0;
-  padding:0;
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing: border-box;
-}
 
-.social{
-  position: fixed;
-  right: 5px;
-  top:260px;
-  z-index: 2000;
-}
+    *{
+      margin:0;
+      padding:0;
+      -webkit-box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      box-sizing: border-box
+     }
+    .social{
+      position: fixed;
+      right: 5px;
+      top:260px;
+      z-index: 2000;
+    }
+    .social ul{
+      list-style: none;
+    }
+    .social ul li a{
+      display: inline-block;
+      color:#fff;
+      background:#000;
+      text-decoration: none;
+    }
+    .social ul li .fa-facebook-official {background: #3b5998;}
+    .social ul li .fa-instagram {background: #ff0084;}
+    .social ul li .fa-snapchat {background: #32506d;}
+    .social ul li .fa-pinterest-p {background: #cb2027;}
+    .social ul li .fa-twitter {background: #00abf0;}
+    .social ul li .fa-linkedin {background: #1769ff;}
 
-.social ul{
-  list-style: none;
-}
-.social ul li a{
-  display: inline-block;
-  color:#fff;
-  background:#000;
-  text-decoration: none;
+    .social ul li a:hover{
+      padding: 5px 10px;
+      background: #000;
+    }
 
+  .tangerine{
+    font-family: 'Tangerine', serif;
+    font-size: 64px;
+    text-shadow: 2px 2px 2px #aaa;
+    }
 
-}
+    p {
+  font-family: "Homer Simpson", cursive;
+  text-align: justify;
+    }
 
-.social ul li .fa-facebook-official {background: #3b5998;}
-.social ul li .fa-instagram {background: #ff0084;}
-.social ul li .fa-snapchat {background: #32506d;}
-.social ul li .fa-pinterest-p {background: #cb2027;}
-.social ul li .fa-twitter {background: #00abf0;}
-.social ul li .fa-linkedin {background: #1769ff;}
+    h3{
+      color:blue;
+    }
 
-.social ul li a:hover{
-  padding: 5px 10px;
-  background: #000;
-}
+    #pens{
+  font: oblique bold 120% cursive;
+    }
