@@ -1,1 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>iweb</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/style.css">
+<!-- estilo para barra de redes sociales -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- iconos w3 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+<!-- google fonts-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple">
+<!-- efectos -->
+<script languaje="javascript">
+  function msg(){
+    alert("Mesanje enviado gracias por colaborar con la pagina, tendremos en cuenta su opinion")
+  }
+</script>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+  <!-- Hamburguer-->
+  <div class="w3-container w3-top  w3-white w3-xlarge">
+    <a href="javascript:void(0)" class="w3-right w3-button w3-white w3-hide-large" onclick="w3_open()">☰</a>
+   </a>
+  </div>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+
+<!-- Sidebar/menu -->
+<div class="w3-sidebar w3-collapse w3-section w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a onclick="w3_close()" class="w3-hide-large w3-right w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove w3-large"></i>
+    </a>
+  </div>
+
+
+  <nav class="w3-bar-block" >
+    <h5 class="w3-bar-item w3-hide-small w3-hide-medium"><strong class=" font-effect-shadow-multiple ">PROVINCIAS</strong></h5>
+    <a href="#home" class="w3-bar-item w3-button fa fa-home w3-hide-large" onclick="w3_close()"> Home</a>
+    <a href="#acerca" class="w3-bar-item w3-button w3-hide-large fa fa-file-text" onclick="w3_close()"> Acerca de</a>
+    <a href="#contacto" class="w3-bar-item w3-button w3-hide-large 	fa fa-address-card "onclick="w3_close()"> Contacto</a>
+  <hr>
+    <a href="#Fade" class="w3-bar-item w3-button tablink"  onclick="openLink(event, 'Fade'),w3_close()"><i class="fa fa-area-chart"> Cajamarca</i></a>
+    <a href="#Left" class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Left'),w3_close()"><i class="fa fa-area-chart"> Jaen</i></a>
+    <a href="#Right" class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Right'),w3_close()"><i class="fa fa-area-chart"> Celendin</i></a>
+    <a href="#Top" class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top'),w3_close()"><i class="fa fa-area-chart"> San Miguel</i></a>
+    <a href="#Bottom" class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Bottom'),w3_close()"><i class="fa fa-area-chart"> San Marcos</i></a>
+    <a href="#Zoom" class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Zoom'),w3_close()"><i class="fa fa-area-chart"> Hualgayoc</i></a>
+  </nav>
+
+</div>
+
+
+<!-- !PAGE CONTENT! -->
+<div id="home" class="w3-main" style="margin-left:300px" >
+  <div class="w3-padding-16"style="margin-top:40px;" >
+    <h1 class=" w3-container w3-teal w3-center w3-padding-16">
+      <span class="tangerine">Actividades Cajamarca</span>
+    </h1>
+  </div>
+
+  <!-- Header -->
+  <div  class="w3-blue-grey" >
+        <a href="#home" class="w3-bar-item w3-button fa fa-home w3-xlarge"> Home</a>
+        <a href="#acerca" class="w3-bar-item w3-button">Acerca de</a>
+        <a href="#contacto" class="w3-bar-item w3-button">Contacto</a>
+    </div>
+
+
+  <!-- contenido-->
+
+    <header  class="w3-container w3-center w3-section">
+      <span class="w3-xlarge w3-text-blue">"Si buscas un resultado diferente no hagas lo mismo de siempre"</span>
+      <p id="pens" style="text-align:center">Albert Einstein</p>
+    </header>
+
+    <div class="w3-row"style="margin-top:16px;">
+        <div class="w3-card-16 m12 l12" >
+            <img src="img/web.jpg" alt="web" style="width:100%">
+        </div>
+    </div>
+
+    <!--Cajamarca -->
+      <div id="Fade" class="w3-container city w3-animate-opacity" style="display:none;">
+        <h2><strong>CAJAMARCA</strong></h2>
+        <p >Cajamarca es uno de los veinticuatro departamentos que, junto con la Provincia
+          Constitucional del Callao, forman la <strong>Republica del Perú.</strong>  Su capital y ciudad más
+          poblada es la homónima Cajamarca. Está ubicado al noroeste del país, limitando al
+           norte con Ecuador, al este con Amazonas, al sur con La Libertad y al oeste con
+           Lambayeque y Piura. Con 1 387 809 habs. en 2007 es el cuarto departamento más poblado
+           por detrás de Lima, Piura y La Libertad y con 41,7 hab/km² es el sexto más densamente
+           poblado, por detrás de Lima, Lambayeque, La Libertad, Piura y Tumbes. Fue fundado el 11
+           de febrero de 1855.
+        </p></br>
+
+        <!-- agricultura-->
+          <h3>Agricultura</h3>
+            <p>La actividad agraria no solo es importante porque tiene como una de sus metas satisfacer
+              la demanda de alimentos de la población, sino también, porque contribuye a modificar
+              la estructura de los mercados a través de producción alternativa, materias primas y
+              residuos que pueden ser utilizados por la industria.</p> </br>
+            <p>En esta actividad el hombre utiliza dos recursos naturales fundamentales: los suelos
+              y el agua, y otros insumos con semillas, fertilizantes, insecticidas, etc.</p></br>
+
+              <h4> Principales cultivos industriales y artesanales. </h4>
+              <p>La mayoría de sus habitantes no son naturales de la selva, en su gran parte son de la zona sierra.
+              Su producción agrícola destaca por la siembra de papa, trigo, cebada, maíz, oca, olluco, mashua, arracacha,
+              quinua, cañihua, arroz, café, yuca, camote, caña de azúcar (de la que se obtiene Ron y Aguardiente,
+              chirimoya (siendo primer productor nacional de la misma) y algodón. Ya que parte de sus pobladores son
+              agricultores y la otra parte son comerciantes.
+            </p></br>
+        <p><strong> * La papa. </strong>En los pisos medios o Región Quechua se cultiva la papa,
+           que es la base de la economía andina y, también, elemento básico de la alimentación de la población
+           de esta región. Hay una gran variedad de papas que difieren en el color, la forma y el tamaño de los
+           tubérculos. De la papa se elabora el Chuño y la papaseca.
+         </P></br>
+        <p><strong> * Otros Cultivos. </strong>Otros productos agrícolas de la Región Quechua son;
+           las habas, las arvejas y una gran variedad de hortalizas. En los pisos más altos de la Región Suni se cultivan:
+            La cebada, la oca, la mashua, el olluco, la quinua, la kiwicha, la cañiwa, etc. Estos tres últimos cereales
+            son los más nutritivos del Mundo por la cantidad de proteínas que contienen. Su consumo desde temprana edad
+            es considerado como una vacuna contra la desnutrición o una inmunización contra el hambre.
+          </p></br>
+
+          <div class="w3-row w3-section">
+              <div class="w3-half w3-container">
+                  <div class="w3-card-16">
+                      <img src="img/labrar.jpg" alt="labrar tierra" style="width:100%">
+                        <i>Agricultor Labrando la tierra</i>
+                    </div>
+                </div>
+                <div class="w3-half w3-container">
+                    <div class="w3-card-16">
+                        <img src="img/papa.jpg" alt="cultivo de papa" style="width:100%">
+                          <i>Cultivo de papa</i>
+                      </div>
+                  </div>
+              </div>
+      <!-- ganaderia-->
+      <h3>Ganaderia</h3>
+        <p>La ganadería consiste en la crianza, selección y reproducción de algunos animales domésticos,
+          como vacunos, ovinos, caprinos, porcinos, etc. Es la primera región productora de ganado vacuno
+           con más de 600.000 cabezas de esta especie. La estación piscícola de Namora produce alevinos de
+            truchas y pejerreyes. Jaén es uno de los mayores productores de arroz y frutales. En el valle de
+            Condebamba se siembre caña de azúcar de la que se obtiene aguardiente y chancaca. Con el objeto
+            de aprovechar sus productos en la alimentación y en las actividades artesanales e industriales.
+          </p> </br>
+        <p>En esta actividad productiva se utilizan los suelos, los pastos naturales, diferentes productos
+          agrícolas (pastos cultivables, granos, chala), como alimentos y otros insumos.
+        </p></br>
+
+          <h4> Especies de la ganadería.</h4>
+          <p>En esta región predomina la crianza de:
+          </p></br>
+
+      <p><strong> * Ganadería de Vacunos. </strong> Esta ganadería es extensiva,
+         conformada por vacunos criollos o "chuscos", descendientes de los bovinos que trajeron
+         los españoles y que degeneraron, con el correr de los años, en especies de baja calidad genética,
+         con baja producción y productividad.
+      </P></br>
+
+      <p><strong> * Ganadería de Ovinos. </strong>Esta ganadería la podemos encontrar de dos tipos,
+         extensiva e intensiva, la crianza se realiza en las altas mesetas andinas o Región Puna. Allí crece el ichu,
+         gramínea que le sirve de alimento.
+      </p></br>
+
+      <p>
+        La ganadería extensiva está conformada por especies de baja calidad genética, descendientes de los primitivos
+        Merinos de Castilla que fueron traídos por los españoles. Tienen bajo rendimiento en carne y lana, es decir,
+         baja producción, pues tienen sólo 15 kilos de peso, en promedio. La ganadería intensiva está conformada por
+         especies seleccionadas, de alta productividad, tanto en carne como en lana, y está conducida bajo una
+         adecuada dirección técnica y científica.
+      </p></br>
+
+      <div class="w3-row w3-section">
+          <div class="w3-half w3-container">
+              <div class="w3-card-16">
+                  <img src="img/ovinos.jpg" alt="ganado ovino" style="width:100%">
+                    <i>Ganado ovino</i>
+                </div>
+            </div>
+            <div class="w3-half w3-container">
+                <div class="w3-card-16">
+                    <img src="img/vacunos.jpg" alt="ganado vacuno" style="width:100%">
+                      <i>Ganado vacuno</i>
+                  </div>
+              </div>
+          </div>
+    <!-- industria-->
+    <h3>Industria</h3>
+      <p>En esta región destacan los lácteros de producción de leche para producir quesos y mantequilla.
+        </p> </br>
+      <p>En esta actividad productiva se utilizan los suelos, los pastos naturales, diferentes productos
+        agrícolas (pastos cultivables, granos, chala), como alimentos y otros insumos.
+      </p></br>
+
+
+        <p><strong> * Leche. </strong> Es un líquido blanquecino y opaco producido por la secreción de las glándulas mamarias de
+          las hembras de los mamíferos (incluidos los monotremas). Esta capacidad secretora es una de
+           las características que definen a los mamíferos.
+        </p></br>
+
+      <p><strong> * Queso. </strong>  Es un alimento sólido elaborado a partir de la leche
+         cuajada de vaca, cabra, oveja, búfala, camella u otros mamíferos. Es la conserva ideal pues muy
+          difícilmente se estropea con el transcurso del tiempo ya que al secarse mejoran sus cualidades
+          en relación al peso.
+      </P></br>
+
+    <p><strong> * Mantequilla.</strong>Es la emulsión de agua en grasa obtenida como resultado
+      del desuero, lavado y amasado de los conglomerados de glóbulos grasos, que se forman por el batido
+      de la crema de leche y es apta para consumo, con o sin maduración biológica producida por bacterias
+       específicas.
+    </p></br>
+
+    <div class="w3-row w3-section">
+        <div class="w3-third w3-container">
+            <div class="w3-card-16">
+                <img src="img/queso.jpg" alt="queso" style="width:100%">
+                  <i>Queso</i>
+              </div>
+          </div>
+          <div class="w3-third w3-container">
+              <div class="w3-card-16">
+                  <img src="img/leche.jpg" alt="leche" style="width:100%">
+                    <i>Leche</i>
+                </div>
+            </div>
+            <div class="w3-third w3-container">
+                <div class="w3-card-16">
+                    <img src="img/mantequilla.jpg" alt="mantequilla" style="width:100%">
+                      <i>mantequilla</i>
+                  </div>
+              </div>
+        </div>
+      </div>
+      <!-- Jaen-->
+        <div id="Left" class="w3-container city w3-animate-left" style="display:none">
+          <h2><strong>JAEN</strong></h2>
+            <p>Jaén es una provincia que aún forma parte del <strong>departamento de Cajamarca,</strong>
+              en el nor oriente del Perú y que espera en un futuro no muy lejano convertirse en una región
+               o departamento. Tiene una ubicación estratégica e historia, su producción y dinamismo económico
+              está basada en la agricultura, el comercio, la exportación de cafés especiales, entre otros.
+            </p></br>
+
+              <!-- agricultura-->
+                <h3>Agricultura</h3>
+                  <p>La provincia de Jaén además de ser principal productor de aceite de oliva,
+                    también tiene otras oportunidades en el mundo agrícola. </p> </br>
+                  <p>La Diputación Provincial de Jaén, en el marco de este sector, tiene entre sus objetivos el
+                    apoyo a cultivos alternativos al olivar, apostar por cultivos que creen un mínimo de jornales
+                    por hectárea y que además potencien el aprovechamiento de las tierras de riego de las que se
+                    disponen y así favorecer la generación de empleo a través de las mismas. Otra apuesta de la
+                    Diputación es la agricultura ecológica. En ambos sentidos se vienen desarrollando diferentes
+                    actuaciones, además de la labor promocional de los productos de la provincia a través de la
+                    estrategia Degusta Jaén, “con la que ser apuesta por consumir productos de Jaén que son sinónimo
+                     de calidad, de conocimiento del agricultor y de la empresa que los genera.</p></br>
+
+                <div class="w3-row w3-section">
+                      <div class="w3-col">
+                          <div class="w3-card-16">
+                                <img src="img/oliva.jpg" alt="aceite de oliva" style="width:70%"></br>
+                                <i>aceite de oliva</i>
+                          </div>
+                        </div>
+                  </div>
+              <h3>Ganaderia</h3>
+                <p>Jaén es una provincia eminentemente ganadera y más concretamente de ganadería extensiva ligada
+                   a los grandes Espacios Naturales Protegidos; o a cualquier otra figura de protección de la naturaleza
+                   como puede ser la Red Natura 2000. La ganadería extensiva en la provincia de Jaén contribuye al
+                   mantenimiento del patrimonio cultural, etnográfico y económico; con predominio de elementos
+                   diferenciadores con respecto a otras modalidades de ganadería extensiva andaluza, española y
+                   comunitaria, cómo pueden ser la trashumancia o el fuerte desarrollo de la ganadería ecológica.
+                  </p> </br>
+
+            <!-- industria-->
+            <h3>Industria</h3>
+              <p>Con un universo de 451 empresas manufactureras, de las cuales 55 constituyen sucursales de empresas
+                de fuera de la región y empleando más del 12% de la población económicamente activa de la ciudad,
+                la actividad industrial muestra presencia en la estructura económica de la ciudad, pero poca
+                 generación de valor agregado, tratándose de empresas generalmente pequeñas y microempresas.
+                </p> </br>
+
+
+            <div class="w3-row w3-section">
+                <div class="w3-half w3-container">
+                    <div class="w3-card-16">
+                        <img src="img/muebles.jpg" alt="muebles" style="width:100%">
+                          <i>Muebles con un fino acabado</i>
+                      </div>
+                  </div>
+                  <div class="w3-half w3-container">
+                      <div class="w3-card-16">
+                          <img src="img/muebles2.jpg" alt="muebles" style="width:100%">
+                            <i>Muebles economicos</i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+      <!-- San miguel-->
+        <div id="Top" class="w3-container city w3-animate-right" style="display:none">
+          <h2><strong>SAN MIGUEL</strong></h2>
+            <p>La Provincia de San Miguel es una de las trece provincias que conforman el Departamento de Cajamarca,
+              bajo la administración del Gobierno Regional de Cajamarca, en el Perú. Limita por el norte con la
+               provincia de Santa Cruz y la Provincia de Hualgayoc; por el este con la Provincia de San Pablo;
+                por el sur con la Provincia de Contumazá; y, por el oeste con el Departamento de Lambayeque y el
+                Departamento de La Libertad
+            </p></br>
+
+            <p>El pueblo de San Miguel se halla envuelto por un majestuoso paisaje, pletórico en formas y matices.
+            </p></br>
+
+            <p>San Miguel de Pallaques es la ciudad capital del distrito y provincia del mismo nombre, dista a
+              40 kilómetros de la provincia de San Pablo y 105.5 Km. de Cajamarca.
+            </p></br>
+
+            <p>La población sanmiguelina es acogedora y muy hospitalaria, la ciudad andina rodeada de hermosos paisajes,
+             mantiene aún una apacible apariencia, que es transformada durante el mes de septiembre las celebraciones
+             de su venerada imagen, "San Miguel Arcángel", y su día central es el 29.
+             </p></br>
+
+              <!-- atractivos turisticos-->
+                <h3>ATRACTIVOS TURISTICOS DE LA PROVINCIA DE SAN MIGUEL</h3>
+                <h4>La Plaza Mayor de la Ciudad</h4>
+                  <p>El trazo de la Plaza Mayor de la ciudad de San Miguel, se remonta a la época colonial,
+                    respetando el esquema fundacional de los españoles. En los contornos de la Plaza se ubican
+                    las siguientes Institucion es: Iglesia Matriz, Municipalidad provincial, Gobernación, Comisaría
+                    Sectorial de la PNP y el Juzgado Mixto provincial. La Plaza de Armas luce en su parte central
+                    sobre la pileta a su venerada imagen: "Arcángel San Miguel”.
+                  </p> </br>
+                  <h4>El Puente Calicanto</h4>
+                  <p>Bello puente construido a fines del siglo XIX. Ubicado a dos kilómetros de la ciudad de San Miguel.
+                     Durante el mandato del alcalde Jacinto Barrantes se construyó el puente de piedra sobre el río
+                      San Miguel. En una zona rocosa y accidentada, fue levantado el puente con ladrillo de calicanto.
+                       En uno de los costados del puente puede leerse la inscripción: “Tributo de los hijos de San
+                        Miguel 1882”. Su fortaleza es tal que hasta hoy es utilizado para el transporte vehicular,
+                        por este puente se va hacia :La Villa Turística de Jangalá y allí conocer sus Ventanillas,
+                        el Distrito de Llapa, San Silvestre de Cochán y también para ir a la ciudad de Cajamarca;
+                        asimismo sirve para el desplazamiento de las personas.
+                      </p></br>
+
+                      <div class="w3-row w3-section">
+                          <div class="w3-half w3-container">
+                              <div class="w3-card-16">
+                                  <img src="img/sanMiguel.jpg" alt="san miguel" style="width:100%">
+                                    <i>Plaza Mayor de San Miguel</i>
+                                </div>
+                            </div>
+                            <div class="w3-half w3-container">
+                                <div class="w3-card-16">
+                                    <img src="img/calicanto.jpg" alt="puente calicanto" style="width:100%">
+                                      <i>Puente Calicanto</i>
+                                  </div>
+                              </div>
+                    </div>
+
+            </div>
+
+
+
+      <!--Celendin-->
+        <div id="Right" class="w3-container city w3-animate-right" style="display:none">
+          <h2><strong>Celendin</strong></h2>
+            <p>La Provincia de Celendín es una de las trece que conforman el Departamento de Cajamarca,
+               bajo la administración del Gobierno Regional de Cajamarca, en el Perú.
+            </p></br>
+            <p>Limita al norte con la provincia de Chota, al este con la Región Amazonas, al sur con las
+              provincias de San Marcos y Cajamarca, y al occidente con la provincia de Hualgayoc.
+            </p></br>
+
+              <!-- agricultura-->
+                <h3>Agricultura</h3>
+                  <p>Es una de las actividades más importantes que realizan los pobladores celendinos siendo su comercio no
+                     significativo, destinándose dichos productos al consumo directo.</p> </br>
+                  <p>Se estima que las tierras agrícolas suman un total de 45,509 hectáreas, en los que se cultiva:
+                    el maíz, el trigo, la cebada, la papa, la oca, la arveja, también en algunas zonas se cultiva el café,
+                     la coca, el cacao, árboles frutales.</p></br>
+
+                <div class="w3-row w3-section">
+                  <div class="w3-half w3-container">
+                      <div class="w3-card-16">
+                          <img src="img/maiz.jpg" alt="maiz" style="width:100%">
+                            <i>Cultivo de maiz</i>
+                        </div>
+                    </div>
+                    <div class="w3-half w3-container">
+                        <div class="w3-card-16">
+                            <img src="img/cacao.jpg" alt="cacao" style="width:100%">
+                              <i>Cultivo de cacao</i>
+                          </div>
+                      </div>
+                  </div>
+
+            <!-- Ganaderia-->
+              <h3>Ganaderia</h3>
+                <p>Dando prioridad a la crianza de ganado vacuno (para producción lechera en su gran mayoría),
+                  el ganado vacuno que se cria en grana mayoría es el criollo, pero también razas como
+                   Brow Swiss y Holstein.
+                  </p> </br>
+                  <div class="w3-row w3-section">
+                    <div class="w3-col w3-container">
+                        <div class="w3-card-16">
+                            <img src="img/ganaderia2.jpg" alt="ganaderia en celendin" style="width:100%"></br>
+                              <i>Ganaderia en Celendin</i>
+                          </div>
+                      </div>
+                    </div>
+
+            <!-- Artesania-->
+            <h3>Artesania</h3>
+              <p>La confección del sombrero es predominante y por este hecho, es fuente de ingresos para algunos pobladores,
+                 son las mujer shilicas las confeccionan estos sombreros utilizando la paja toquilla traida desde
+                 el Departamento de San Martín (generalmente de Rioja). La venta de los sombreros es realizado en la
+                  plazuela Juan Basillo Cortegana (conocida como la Alamedad), todos los domingos.
+                </p> </br>
+
+            <div class="w3-row w3-section">
+                <div class="w3-half w3-container">
+                    <div class="w3-card-16">
+                        <img src="img/sombreros.jpg" alt="sombreros" style="width:100%">
+                          <i>Confeccion de sombreros</i>
+                      </div>
+                  </div>
+                  <div class="w3-half w3-container">
+                      <div class="w3-card-16">
+                          <img src="img/sombreros2.jpg" alt="sombreros" style="width:100%">
+                            <i>Sombrero terminado</i>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!--San marcos -->
+        <div id="Bottom" class="w3-container city w3-animate-left" style="display:none">
+            <h2><strong>SAN MARCOS</strong></h2>
+          <p>La Provincia de San Marcos es una de las trece que conforman el Departamento de Cajamarca,
+            bajo la administración del Gobierno Regional de Cajamarca, en el Perú. Limita por el norte
+            con la provincia de Celendín; por el este con el Departamento de La Libertad; por el sur
+            con la provincia de Cajabamba; y, por el oeste con la provincia de Cajamarca.
+          </p></br>
+
+          <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+            <p>La Provincia de San Marcos, pertenece al Departamento de Cajamarca y está ubicada al sur-este del mismo.
+              Abarca una superficie de 1 362,32 km2 y está habitada por unas 50 275 personas según el censo de 1993;
+              esto representa el 4% de la población total del departamento, por otro lado, se sabe, que la mayor parte
+              de pobladores pertenecen a la zona rural (41.929; lo que constituye un 83,39% de la población total).
+            </p></br>
+
+            <p>Los platos típicos en San Marcos se cultivan gran variedad de productos alimenticios,
+              los mismos que forman parte de variados y nutritivos platos típicos, aunque en muchos
+              de los casos no son propios, poseen cierta peculiaridad que los hacen distinguir.
+            </p></br>
+
+            <p><strong> * Cuy con papa. </strong>Es el más representativo de la provincia y se sirve en ocasiones especiales.
+               Está preparado a base de papa guisada o aderezada y cuy frito, acompañado de arroz de trigo o trigo pelado
+               cocinado.
+             </P></br>
+
+             <p><strong> * El puchero. </strong>EEs preparado con repollo, granos de arrozcarne de cerdo o tocino.
+               Es un platillo característico de las fiestas rurales y por lo general se lo sirve acompañado yuca y
+                camote sancochado además de la famosa cancha de maíz.
+              </P></br>
+
+              <p><strong> * CEl potaje de minga. </strong>Es un plato preparado con mote aderezado, acompañado de
+                sopa de chochoca espesa y los conocidos discos o cachangas. Este plato también se suele servir Cuy con papa
+                en los velorios.
+               </P></br>
+
+               <p><strong> * El zango de trigo. </strong>El trigo tostado y molido va a acompañar un aderezo y de
+                 esta manera dar lugar a un delicioso plato que se acostumbra mucho para los trabajos comunales en el Distrito de Gregorio Pita - Paucamarca.
+                </P></br>
+                <p><strong> * El ruche. </strong>Es un potaje muy nutritivo preparado con trigo al que previamente se lo
+                   ruche o quita la cáscara; también lleva menestra (por lo general arveja) y algún tipo de carne.
+                 </P></br>
+                 <div class="w3-row w3-section">
+                   <div class="w3-half w3-container">
+                       <div class="w3-card-16">
+                           <img src="img/cuy.jpg" alt="cuy" style="width:100%">
+                             <i>Cuy con papas</i>
+                         </div>
+                     </div>
+                     <div class="w3-half w3-container">
+                         <div class="w3-card-16">
+                             <img src="img/sango.jpg" alt="sango" style="width:100%">
+                               <i>Sango de trigo</i>
+                           </div>
+                       </div>
+                   </div>
+
+        </div>
+
+
+<!-- Hualgayoc-->
+        <div id="Zoom" class="w3-container city w3-animate-opacity" style="display:none " >
+          <h2><strong>HUALGAYOC</strong></h2>
+            <p>La Provincia de Hualgayoc es una de las trece que conforman el departamento de Cajamarca,
+              bajo la administración del Gobierno Regional de Cajamarca. Limita por el norte con la provincia de Chota;
+               por el este con la provincia de Celendín; por el sur con la provincia de Cajamarca y la provincia de
+               San Pablo; y, por el oeste con la provincia de San Miguel y la provincia de Santa Cruz.
+            </p></br>
+              <p>Es un distrito minero que el sabio Antonio Raimondi describió como «Techo de Paja, Cerros de Plata
+              y Corazón de Oro»,en su visita efectuada en 1867.</p></br>
+              <p>El distrito tiene una extensión de 226,17 km² y una población aproximada de 20 129 habitantes,
+                de la cual el 90% es rural.Se ubica a unos 88 km al norte de Cajamarca y a 29 km al oeste de
+                 Bambamarca, a 3 515 m.s.n.m.</p></br>
+
+        </div>
+
+      <!-- fin tabs -->
+
+      <!-- redes sociales -->
+      <div class="social w3-xxlarge w3-left w3-top-50 ">
+        <ul>
+          <li><a class="fa fa-facebook-official w3-hover-black" href="http://www.facebook.com" target="_blank"></a></li>
+          <li><a class="fa fa-instagram w3-hover-black" href="#"></a></li>
+          <li><a class="fa fa-snapchat w3-hover-black" href="#"></a> </li>
+          <li><a class="fa fa-pinterest-p w3-hover-black" href="#"></a></li>
+          <li><a class="fa fa-twitter w3-hover-black" href="#"></a></li>
+          <li><a class="fa fa-linkedin w3-hover-black" href="#"></a></li>
+        </ul>
+      </div>
+      <!-- cierre redes sociales -->
+
+      <!-- contacto -->
+
+       <div id="contacto" class="w3-container w3-padding-large w3-grey w3-section ">
+          <h4  class="w3-opacity" ><strong>Contactame</strong></h3>
+          <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px ">
+
+            <div class="w3-third w3-dark-gray  w3-round-large w3-padding-24">
+              </span><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></span>
+            </span>ialiagaa@unc.edu.pe</span>
+            </div>
+            <div class="w3-container w3-third w3-teal  w3-round-large w3-padding-24">
+              <span><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></span>
+              <span>Cajamarca, PERU</span>
+            </div>
+            <div class="w3-third w3-dark-gray  w3-round-large w3-padding-24">
+            </span><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></span>
+            </span>956460452</span>
+            </div>
+         </div>
+         <hr class="w3-opacity">
+          <form target="#home">
+            <div class="w3-section">
+              <label>Nombre</label>
+              <input class="w3-input w3-border" type="text" name="Name" required>
+            </div>
+            <div class="w3-section">
+              <label>Email</label>
+              <input class="w3-input w3-border" type="text" name="<Ema></Ema>il" required>
+            </div>
+            <div class="w3-section">
+              <label>Mensaje</label>
+              <input class="w3-input w3-border" type="text" name="Message" required >
+            </div>
+            <button type="submit" class="w3-button w3-black w3-margin-bottom" onclick="msg()"><i class="fa fa-paper-plane w3-margin-right"></i >Enviar mensaje</button>
+          </form>
+        </div>
+
+
+        <!-- acerca de -->
+        <div class="w3-row w3-section">
+          <div class="w3-card-16 w3-col  w3-section" >
+            <header class="w3-container w3-blue  w3-section">
+              <h4 id="acerca" class="w3-opacity  w3-section ">Acerca de:</h4>
+            </header>
+            <p class="w3-large">Mi nombre es Ivan Aliaga Alvarez estudiante de la facualtad de <strong>Ingenieria de sistemas</strong>
+              de la UNC y esta pagina es desarrollada con fines academicos en el curso de  ingenieria web en el año 2017.
+           </p>
+          </div>
+          </div>
+
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-15 w3-dark-grey w3-center w3-section">
+          <h2 class="w3-opacity">Ingenieria Web &copy;</h2>
+        </footer>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+function openLink(evt, animName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(animName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+</script>
+</body>
+</html>
 
