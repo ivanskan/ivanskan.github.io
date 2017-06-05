@@ -16,6 +16,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif,"Raleway"}
 </style>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
+
+
+  <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16 w3-blue">
+    <span class="w3-left w3-padding">Home</span>
+    <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container">
@@ -23,7 +35,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif,"Raleway"}
       <i class="fa fa-remove"></i>
     </a>
     <img src="img/pk.jpg" alt="imagen pk" title="pk =)" style="width:45%; " class="w3-round"><br><br>
-  <!--Hamburguer -->
+
+<!--Hamburguer -->
     <h4><b>MENU</b></h4>
   </div>
   <div class="w3-bar-block">
@@ -34,8 +47,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif,"Raleway"}
 
 </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px" >
@@ -54,7 +65,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif,"Raleway"}
       <button class="w3-button w3-white w3-hide-small w3-round-large"><i class="fa fa-photo w3-margin-right"></i>fotos</button>
 		<a class="w3-button w3-white w3-hide-small w3-round-large" href="ac.html">Act. Cajamarca</a>
     </div>
-    </div> 
+    </div>
   </header>
 
   <!-- First Photo Grid-->
@@ -96,7 +107,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif,"Raleway"}
   </div>
 
   <!-- second Photo Grid-->
-  
+
   <div class="w3-row-padding">
     <div class="w3-third w3-container w3-margin-bottom">
       <img src="img/cr7.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
@@ -141,10 +152,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif,"Raleway"}
         <h4 id="acerca" class="w3-opacity w3-center">Acerca de:</h4>
       </header>
     <div class="w3-container w3-padding-24">
-      <p>Mi nombre es ivan aliaga alvarez estudiante de la facualtad de ingenieria de sistemas de la UNC
-      y esta pagina es desarrollada con fines academicos en el curso de 
-          <span style="color:blue">ingenieria web</span> en el año 2017.
-      de la UNC </p>
+      <p class="w3-large">Mi nombre es Ivan Aliaga Alvarez estudiante de la facualtad de <strong>Ingenieria de sistemas</strong>
+        de la UNC y esta pagina es desarrollada con fines academicos en el curso de  ingenieria web en el año 2017.
+     </p>
     </div>
     </div>
       <div class="w3-card-16 w3-half ">
@@ -208,7 +218,6 @@ function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
 }
-
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
