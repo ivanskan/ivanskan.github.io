@@ -1,15 +1,9 @@
 @CHARSET "UTF-8";
 
-    *{
-      margin:0;
-      padding:0;
-      -webkit-box-sizing:border-box;
-      -moz-box-sizing:border-box;
-      box-sizing: border-box
-     }
+    /*redes sociales*/
     .social{
       position: fixed;
-      right: 5px;
+      right: 0px;
       top:260px;
       z-index: 2000;
     }
@@ -17,10 +11,11 @@
       list-style: none;
     }
     .social ul li a{
-      display: inline-block;
+      display:inline-block;
       color:#fff;
       background:#000;
       text-decoration: none;
+      border-radius: 5px;
     }
     .social ul li .fa-facebook-official {background: #3b5998;}
     .social ul li .fa-instagram {background: #ff0084;}
@@ -33,6 +28,10 @@
       padding: 5px 10px;
       background: #000;
     }
+    .fuente{
+      font-size:36px;
+    }
+
 
   .tangerine{
     font-family: 'Tangerine', serif;
