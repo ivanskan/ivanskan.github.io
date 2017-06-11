@@ -51,3 +51,12 @@
     #pens{
   font: oblique bold 120% cursive;
     }
+    
+    
+  /*slide*/
+  .carrusel{
+    width: 90%;
+  }
+  .slide{
+    width: 100%;
+  }
