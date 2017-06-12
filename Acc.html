@@ -43,36 +43,35 @@
     <!-- Overlay effect when opening sidebar on small screens -->
   <div id="myOverlay" class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" ></div>
     
+  <!-- CONTENIDO -->
+    <div id="home" class="w3-main w3-colapso" style="margin-left:200px;margin-right:40px" >
 
-<!-- !PAGE CONTENT! -->
-<div id="home" class="w3-main" style="margin-left:300px" >
-  <div class="w3-padding-16"style="margin-top:40px;" >
-    <h1 class=" w3-container w3-teal w3-center w3-padding-16">
-      <span class="tangerine">Actividades Cajamarca</span>
-    </h1>
-  </div>
+    <!-- Header -->
+    <header  class="w3-padding-24 ">
+        <h1 class=" w3-container w3-teal w3-center w3-padding-8"><span class="tangerine">Actividades Cajamarca</span></h1>
+    </header>
 
-  <!-- Header -->
-  <div  class="w3-blue-grey" >
+      <!-- Barra navegacion principal -->
+      <div class="w3-blue-grey" >
         <a href="#home" class="w3-bar-item w3-button fa fa-home w3-xlarge"> Home</a>
         <a href="#acerca" class="w3-bar-item w3-button  fa fa-file-text w3-large"> Acerca de</a>
         <a href="#contacto" class="w3-bar-item w3-button fa fa-address-card w3-large"> Contacto</a>
-        <a href="index.html" class="w3-bar-item w3-button fa fa-angle-double-left w3-large"> Retornar a la pagina principal</a>
-    </div>
+        <a href="index.html" class="w3-bar-item w3-button fa fa-arrow-left w3-large"> Retornar a la pagina principal</a>
+        <input id="myInput" type="text" class="w3-bar-item w3-hide-medium w3-hide-small " placeholder=" buscar provincia" onkeyup="filterFunction()">
+      </div>
+      <!-- contenido-->
+        <header  class="w3-container w3-center w3-section">
+          <span class="w3-xlarge w3-text-blue">"Si buscas un resultado diferente no hagas lo mismo de siempre"</span>
+          <p id="pens" class="w3-center w3-padding" >Albert Einstein</p>
+        </header>
 
-
-  <!-- contenido-->
-
-    <header  class="w3-container w3-center w3-section">
-      <span class="w3-xlarge w3-text-blue">"Si buscas un resultado diferente no hagas lo mismo de siempre"</span>
-      <p id="pens" style="text-align:center">Albert Einstein</p>
-    </header>
-
-    <div class="w3-row"style="margin-top:16px;">
-        <div class="w3-card-16 m12 l12" >
+      <!-- imagen principal-->
+        <div class="w3-row w3-section">
+          <div class="w3-card-16 m12 l12" >
             <img src="img/web.jpg" alt="web" style="width:100%">
+          </div>
         </div>
-    </div>
+
 
     <!--Cajamarca -->
       <div id="Fade" class="w3-container city w3-animate-opacity" style="display:none;">
