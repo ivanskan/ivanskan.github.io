@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <title>†Stark</title>
@@ -8,16 +9,14 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="shortcut icon" href="img/pk.png"/>﻿
 
-
 <body class="w3-light-grey w3-content" style="max-width:1600px">
-
 
   <!-- Hamburguer-->
   <div class="w3-container w3-top">
     <a href="javascript:void(0)" class="w3-right w3-button w3-white w3-hide-large" onclick="w3_open()">☰</a>
   </div>
 
-  <!--Navegacion principal -->
+<!--Navegacion principal -->
   <nav id="mySidebar" class="w3-sidebar w3-collapse w3-section  w3-white w3-animate-left" style="z-index:3;width:250px;" >
     <div class="w3-container w3-section">
         <a onclick="w3_close()" class="w3-hide-large w3-right w3-padding w3-hover-grey" title="close menu"><i class="fa fa-remove w3-large w3-xxlarge"></i></a>
@@ -39,7 +38,7 @@
     <a href="#"><img src="img/pk.jpg"  alt="imagen pk"  title="pk =)" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large"></a>
     <div class="w3-container">
      <!--<h1 class="w3-opacity"><strong>Bienvenidos</strong> </h1>-->
-   <marquee behavior="scroll" direction="left" scrollamount="10"><h1 class=" w3-container w3-teal w3-center w3-padding-8"><span class="tangerine">Bienvenidos a mi Personal Web</span></h1></marquee>
+    <marquee class="tangerine" behavior="scroll" direction="left" scrollamount="10">Bienvenidos a mi Personal Web</marquee>
     <div class="w3-section w3-bottombar w3-padding-16">
       <a class="w3-button w3-margin-right w3-padding-16>">Filtro:</a>
       <a href="#home" class="w3-button w3-black  w3-padding-16 w3-round-large fa fa-home w3-xlarge "> Home</a>
@@ -147,7 +146,7 @@
        </div>
     </div>
 
-    <!-- redes sociales -->
+    <!-- redes sociales-->
     <div class="social fuente">
       <ul>
         <li><a class="fa fa-facebook-official" href="http://www.facebook.com" target="_blank"></a></li>
@@ -212,61 +211,66 @@
           <img src="img/sistemas.jpg" alt="sistemas" style="width:100%">
         </div>
         <div class="w3-card-16 w3-half w3-padding w3-section">
-          <img src="img/bmx.jpg" alt="bmx street" style="width:100%">
+          <img src="img/bmx.jpg" alt="bmx" style="width:100%">
         </div>
         <div class="w3-card-16 w3-half w3-padding w3-section">
           <img src="img/lp.jpg" alt="linkin park" style="width:100%">
         </div>
 
       </div>
-      
-<!-- contacto -->
-       <div id="contacto" class="w3-container w3-padding-large w3-grey w3-section ">
-          <h4  class="w3-opacity" ><strong>Contactame</strong></h4>
-          <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px ">
 
-            <div class="w3-third w3-blue-gray  w3-round-large w3-padding-24">
-              <span><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></span>
-            <span>ialiagaa@unc.edu.pe</span>
-            </div>
-            <div class="w3-container w3-third w3-dark-gray  w3-round-large w3-padding-24">
-              <span><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></span>
-              <span>Cajamarca, PERU</span>
-            </div>
-            <div class="w3-third w3-blue-gray  w3-round-large w3-padding-24">
-            <span><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></span>
-            <span>956460452</span>
-            </div>
-         </div>
-         <hr class="w3-opacity">
-          <form target="#home">
-            <div class="w3-section">
-              <label>Nombre</label>
-              <input class="w3-input w3-border" type="text" name="Name" required>
-            </div>
-            <div class="w3-section">
-              <label>Email</label>
-              <input class="w3-input w3-border" type="text" name="<Ema></Ema>il" required>
-            </div>
-            <div class="w3-section">
-              <label>Mensaje</label>
-              <input class="w3-input w3-border" type="text" name="Message" required >
-            </div>
-            <button type="submit" class="w3-button w3-black w3-margin-bottom" onclick="msg()"><i class="fa fa-paper-plane w3-margin-right"></i >Enviar mensaje</button>
-          </form>
+      <h1> Ubicacion</h1>
+    <div id="Ubicacion" class="w3-card-2 w3-margin">
+   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d63339.21253268571!2d-78.53922190068677!3d-7.16054941344596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ses!4v1496643428802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+   </div>
+
+    </div>
+
+<!-- contacto -->
+ <div class="w3-container w3-padding-large w3-grey w3-section">
+    <h2 id="contacto" class="w3-opacity" ><strong>Contactame</strong></h2>
+    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px ">
+        <div class="w3-third w3-dark-gray  w3-round-large w3-padding-24">
+          <span><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></span>
+          <span>ialiagaa@unc.edu.pe</span>
         </div>
+        <div class="w3-container w3-third w3-teal  w3-round-large w3-padding-24">
+          <span><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></span>
+          <span>Cajamarca, PERU</span>
+        </div>
+        <div class="w3-third w3-dark-gray  w3-round-large w3-padding-24">
+          <span><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></span>
+          <span>956460452</span>
+        </div>
+     </div>
+   <hr class="w3-opacity">
+    <form>
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" name="<Ema></Ema>il" required>
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+    </form>
+  </div>
 
 </div>
+
   <!-- Footer -->
   <footer class="w3-container w3-padding-15 w3-dark-grey w3-center w3-section">
     <h2>Ingenieria Web &copy;</h2>
   </footer>
 <!--  <embed src="song/sum41.mp3"  height="50px"> -->
-  </div>
 
-<!-- End page content -->
+</div>
 
 <script type="text/javascript" src="js/javascript.js"></script>
-
 </body>
 </html>
