@@ -16,35 +16,29 @@
     <div class="w3-container w3-top">
         <a href="javascript:void(0)" class="w3-right w3-xlarge w3-button w3-white w3-hide-large" onclick="w3_open()">☰</a>
     </div>
+  <!-- Navegacion lateral -->
+    <div id="mySidebar" class="w3-sidebar w3-collapse w3-section w3-white w3-animate-left" style="z-index:3;width:200px;" >
 
-<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+      <a onclick="w3_close()" class="w3-hide-large w3-right w3-padding w3-hover-grey" title="cerrar menu">
+      <i class="fa fa-remove  w3-xxlarge"></i> </a>
 
+      <nav class="w3-bar-block " style="margin-top:140px;" >
+        <h5 class="w3-bar-item w3-hide-small w3-hide-medium w3-xlarge"><strong class=" font-effect-shadow-multiple ">PROVINCIAS</strong></h5>
+        <a href="#home" class="w3-bar-item w3-button fa fa-home w3-hide-large w3-large" onclick="w3_close()"> Home</a>
+        <a href="#acerca" class="w3-bar-item w3-button w3-hide-large fa fa-file-text w3-large" onclick="w3_close()"> Acerca de</a>
+        <a href="#contacto" class="w3-bar-item w3-button w3-hide-large fa fa-address-card w3-large"onclick="w3_close()"> Contacto</a>
+      <br>
+        <a href="#Cajamarca" class="w3-bar-item w3-button tablink w3-large"  onclick="openLink(event, 'Cajamarca'),w3_close()"><i class="fa fa-area-chart"> Cajamarca</i></a>
+        <a href="#Jaen" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Jaen'),w3_close()"><i class="fa fa-area-chart"> Jaen</i></a>
+        <a href="#Celendin" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Celendin'),w3_close()"><i class="fa fa-area-chart"> Celendin</i></a>
+        <a href="#Chota" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Chota'),w3_close()"><i class="fa fa-area-chart"> Chota</i></a>
+        <a href="#Cutervo" class="w3-bar-item w3-button tablink w3-large"  onclick="openLink(event, 'Cutervo'),w3_close()"><i class="fa fa-area-chart"> Cutervo</i></a>
+        <a href="#SanMiguel" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'SanMiguel'),w3_close()"><i class="fa fa-area-chart"> San Miguel</i></a>
+        <a href="#SanMarcos" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'SanMarcos'),w3_close()"><i class="fa fa-area-chart"> San Marcos</i></a>
+        <a href="#Hualgayoc" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Hualgayoc'),w3_close()"><i class="fa fa-area-chart"> Hualgayoc</i></a>
+      </nav>
 
-<!-- Sidebar/menu -->
-<div class="w3-sidebar w3-collapse w3-section w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-  <div class="w3-container">
-    <a onclick="w3_close()" class="w3-hide-large w3-right w3-padding w3-hover-grey" title="close menu">
-      <i class="fa fa-remove w3-large w3-xxlarge"></i>
-    </a>
-  </div>
-
-
-  <nav class="w3-bar-block" style="margin-top:125px;" >
-    <h5 class="w3-bar-item w3-hide-small w3-hide-medium w3-xlarge"><strong class=" font-effect-shadow-multiple ">PROVINCIAS</strong></h5>
-    <a href="#home" class="w3-bar-item w3-button fa fa-home w3-hide-large w3-large" onclick="w3_close()"> Home</a>
-    <a href="#acerca" class="w3-bar-item w3-button w3-hide-large fa fa-file-text w3-large" onclick="w3_close()"> Acerca de</a>
-    <a href="#contacto" class="w3-bar-item w3-button w3-hide-large 	fa fa-address-card w3-large"onclick="w3_close()"> Contacto</a>
-  <hr>
-    <a href="#Fade" class="w3-bar-item w3-button tablink w3-large"  onclick="openLink(event, 'Fade'),w3_close()"><i class="fa fa-area-chart"> Cajamarca</i></a>
-    <a href="#Left" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Left'),w3_close()"><i class="fa fa-area-chart"> Jaen</i></a>
-    <a href="#Right" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Right'),w3_close()"><i class="fa fa-area-chart"> Celendin</i></a>
-    <a href="#Top" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Top'),w3_close()"><i class="fa fa-area-chart"> San Miguel</i></a>
-    <a href="#Bottom" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Bottom'),w3_close()"><i class="fa fa-area-chart"> San Marcos</i></a>
-    <a href="#Zoom" class="w3-bar-item w3-button tablink w3-large" onclick="openLink(event, 'Zoom'),w3_close()"><i class="fa fa-area-chart"> Hualgayoc</i></a>
-  </nav>
-
-</div>
-
+    </div>
 
 <!-- !PAGE CONTENT! -->
 <div id="home" class="w3-main" style="margin-left:300px" >
