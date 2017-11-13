@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Subneteo</title>
+  </head>
+
+<style>
+
+body, html {height: 100%}
+.bgimg {
+    background-image: url('img/dn.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
+
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+  </div>
+  <div class="w3-display-middle">
+  </div>
+</div>
+
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT THE CAFE</span></h5>
+    <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch sandwiches, as well as a selection of sides and salads and other good stuff.</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
+      <p>Chef, Coffeeist and Owner: Liam Brown</p>
+    </div>
+
+
+    <h2>Calculo sub-redes</h2>
+
+    <div class="w3-container ">
+      <form class="form1" >
+        <ul>
+          <li>
+            <label for="nombre">DIRECCION IP </label>
+            <input id="ip" type="text" class="imp">
+          </li>
+          <li>
+            <label for="nombre">SUB-REDES </label>
+            <input id="subred" type="text" class="imp">
+          </li>
+        </ul>
+        </form>
+    </div>
+
+
+<button id="buton" onclick="getData()" type="button">ok</button>
+
+<span id="cl"></span>
+<span id="ms"></span>
+<span id="nm"></span>
+<span id="sub"></span>
+<span id="host"></span>
+<span id="rango"></span>
+</div>
+  </div>
+<script type="text/javascript" src="js/fun.js"></script>
+  </body>
+</html>
