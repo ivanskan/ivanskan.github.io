@@ -339,7 +339,7 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 }
 
 .jumping-image {
-  animation: jump 0.6s ease-in-out ; 
+  animation: jump 0.6s ease-in-out infinite; 
 }
 
 @keyframes jump {
