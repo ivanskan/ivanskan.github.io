@@ -333,3 +333,29 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-instagram::before { content: "\f437"; }
 .bi-arrow-up-short::before { content: "\f145"; }
 .bi-geo-alt-fill::before { content: "\f3e7"; }
+
+.image-container {
+  position: relative;
+}
+
+.jumping-image {
+  animation: jump 0.6s ease-in-out ; 
+}
+
+@keyframes jump {
+  0% {
+      transform: translateY(0); 
+  }
+  25% {
+      transform: translateY(-10px); 
+  }
+  50% {
+      transform: translateY(0); 
+  }
+  75% {
+      transform: translateY(-5px); 
+  }
+  100% {
+      transform: translateY(0); 
+  }
+}
