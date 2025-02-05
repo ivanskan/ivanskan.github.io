@@ -86,7 +86,7 @@
    */
   function aosInit() {
     AOS.init({
-      duration: 600,
+      duration: 400,
       easing: 'ease-in-out',
       once: true,
       mirror: false
@@ -94,45 +94,48 @@
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
 
   /**
-   * Init isotope layout and filters
+   * Init isotope layout
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+  document.addEventListener('DOMContentLoaded', function() {
 
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
+    var grid = document.querySelector('.isotope-container');
+  
+    var iso = new Isotope(grid, {
+      itemSelector: '.isotope-item',
+      getSortData: {
+        name: '.name',
+      }
+    });
+  
+    document.querySelector('.menu-filters').addEventListener('click', function(event) {
+      if (event.target.tagName.toLowerCase() === 'li') {
+        var filterValue = event.target.getAttribute('data-filter');  
+        iso.arrange({ filter: filterValue });
+      }
+    });
+  
+    // document.querySelector('#sorts').addEventListener('click', function(event) {
+    //   if (event.target.tagName.toLowerCase() === 'button') {
+    //     var sortByValue = event.target.getAttribute('data-sort-by');
+    //     iso.arrange({ sortBy: sortByValue });
+    //   }
+    // });
+  
+    var buttonGroups = document.querySelectorAll('.isotope-filters li');
+    buttonGroups.forEach(function(buttonGroup) {
+      buttonGroup.addEventListener('click', function(event) {
+        var activeButton = document.querySelector('.isotope-filters .filter-active');
+        if (activeButton) {
+          activeButton.classList.remove('filter-active');
+        }
+        event.target.classList.add('filter-active');
       });
     });
-
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
-    });
-
+    
   });
+
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
