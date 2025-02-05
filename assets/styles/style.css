@@ -304,6 +304,11 @@
     background: color-mix(in srgb, var(--accent-color), transparent 20%);
   }
 
+  div img {
+    user-select: none;
+    pointer-events: none;
+  }
+
   
 @font-face {
   font-display: block;
