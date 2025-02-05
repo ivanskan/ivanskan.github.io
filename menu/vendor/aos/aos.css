@@ -12,8 +12,8 @@
     transition-delay:.2s
 }
 
-[data-aos][data-aos][data-aos-duration="600"],body[data-aos-duration="400"] [data-aos] {
-    transition-duration:.4s
+[data-aos][data-aos][data-aos-duration="300"],body[data-aos-duration="300"] [data-aos] {
+    transition-duration:.3s
 }
 
 [data-aos][data-aos][data-aos-easing=ease-in-out],body[data-aos-easing=ease-in-out] [data-aos] {
