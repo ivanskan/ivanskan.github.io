@@ -60,5 +60,20 @@
         }
       }
     });
-  
+
+  function triggerAnimation() {
+    const buttonWsp = document.querySelector('.jumping-image');
+    buttonWsp.classList.add('animate-jump');
+    
+    setTimeout(() => {
+      buttonWsp.classList.remove('animate-jump');
+    }, 600); 
+  }
+
+  window.addEventListener('load', () => {
+    triggerAnimation();
+    
+    setInterval(triggerAnimation, 5000); 
+  });
+
   })();
