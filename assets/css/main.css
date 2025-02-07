@@ -1,43 +1,28 @@
-/**
-* Template Name: Gp
-* Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
-* Updated: Aug 15 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
-/* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Raleway",  sans-serif;
   --nav-font: "Poppins",  sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #151515; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #ffc451; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #312f2f; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #ffffff;
+  --default-color: #444444;
+  --heading-color: #151515;
+  --accent-color: #ffc451;
+  --surface-color: #ffffff;
+  --contrast-color: #312f2f;
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: rgba(255, 255, 255, 0.905);  /* The default color of the main navmenu links */
-  --nav-hover-color: #ffc451; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ffc451; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: rgba(255, 255, 255, 0.905);
+  --nav-hover-color: #ffc451;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #212529;
+  --nav-dropdown-hover-color: #ffc451;
 }
-
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
   --background-color: #f9f9f9;
@@ -52,14 +37,10 @@
   --contrast-color: #2a2727;
 }
 
-/* Smooth scroll */
 :root {
   scroll-behavior: smooth;
 }
 
-/*--------------------------------------------------------------
-# General Styling & Shared Classes
---------------------------------------------------------------*/
 body {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -77,12 +58,7 @@ a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
@@ -139,9 +115,6 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Global Header
---------------------------------------------------------------*/
 .header {
   --background-color: rgba(0, 0, 0, 0.8);
   --heading-color: #ffffff;
@@ -223,9 +196,8 @@ h6 {
   --background-color: rgba(0, 0, 0, 0.8);
 }
 
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
+/* Navigation Menu */
+
 /* Navmenu - Desktop */
 @media (min-width: 1200px) {
   .navmenu {
@@ -334,6 +306,7 @@ h6 {
 }
 
 /* Navmenu - Mobile */
+
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
@@ -457,9 +430,11 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
+
+.form-control::placeholder {
+  color: rgb(175, 175, 175) !important;
+}
+
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -468,7 +443,7 @@ h6 {
 }
 
 .footer .footer-top {
-  padding: 50px 0;
+  padding: 30px 0 20px 0;
   background-color: color-mix(in srgb, var(--footer-background-color) 90%, white 10%);
 }
 
@@ -563,16 +538,13 @@ h6 {
 }
 
 .footer .copyright {
-  padding: 30px 0;
+  padding: 20px 0 70px 0;
 }
 
 .footer .copyright p {
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
 #preloader {
   position: fixed;
   inset: 0;
@@ -605,9 +577,6 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Scroll Top Button
---------------------------------------------------------------*/
 .scroll-top {
   position: fixed;
   visibility: hidden;
@@ -647,60 +616,32 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
-.page-title {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  position: relative;
-}
-
-.page-title .heading {
-  padding: 80px 0;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.page-title .heading h1 {
-  font-size: 38px;
-  font-weight: 700;
-}
-
-.page-title nav {
-  background-color: color-mix(in srgb, var(--default-color), transparent 95%);
-  padding: 20px 0;
-}
-
-.page-title nav ol {
+.service-box ol {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  margin: 0;
+  margin: 0 0 30px 0;
   padding: 0;
   font-size: 16px;
   font-weight: 400;
 }
 
-.page-title nav ol li+li {
+.page-title ol li+li {
   padding-left: 10px;
 }
 
-.page-title nav ol li+li::before {
+.service-box ol li+li::before {
   content: "/";
   display: inline-block;
   padding-right: 10px;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-/*--------------------------------------------------------------
-# Global Sections
---------------------------------------------------------------*/
 section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
-  scroll-margin-top: 80px;
+  padding: 50px 0;
+  scroll-margin-top: 65px;
   overflow: clip;
 }
 
@@ -712,11 +653,8 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
 .section-title {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   position: relative;
 }
 
@@ -749,9 +687,6 @@ section,
   text-transform: uppercase;
 }
 
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
 .hero {
   width: 100%;
   min-height: 100vh;
@@ -852,9 +787,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
 .about .content h3 {
   font-size: 1.75rem;
   font-weight: 700;
@@ -885,9 +817,6 @@ section,
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# Clients Section
---------------------------------------------------------------*/
 .clients .swiper-slide img {
   opacity: 0.5;
   transition: 0.3s;
@@ -919,9 +848,6 @@ section,
   background-color: var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Features Section
---------------------------------------------------------------*/
 .features .features-image {
   position: relative;
   min-height: 400px;
@@ -935,6 +861,8 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  padding-right: calc(var(--bs-gutter-x)* .5);
+  padding-left: calc(var(--bs-gutter-x)* .5);
 }
 
 .features .features-item h4 {
@@ -956,9 +884,6 @@ section,
   margin: 0;
 }
 
-/*--------------------------------------------------------------
-# Services Section
---------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
   text-align: center;
@@ -1006,9 +931,6 @@ section,
   transform: translateY(-10px);
 }
 
-/*--------------------------------------------------------------
-# Call To Action Section
---------------------------------------------------------------*/
 .call-to-action {
   padding: 80px 0;
   position: relative;
@@ -1024,6 +946,13 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+}
+
+@media screen and (max-width: 576px) {
+
+  .call-to-action img {
+    object-fit: contain;
+  }
 }
 
 .call-to-action:before {
@@ -1069,9 +998,7 @@ section,
   border: 2px solid var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Portfolio Section
---------------------------------------------------------------*/
+
 .portfolio .portfolio-filters {
   padding: 0;
   margin: 0 auto 20px auto;
@@ -1170,9 +1097,6 @@ section,
   bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# Stats Section
---------------------------------------------------------------*/
 .stats .stats-item {
   padding: 10px;
 }
@@ -1194,15 +1118,12 @@ section,
 
 .stats .stats-item p {
   color: color-mix(in srgb, var(--default-color), transparent 40%);
-  padding: 15px 0 0 0;
+  padding: 10px 0 0 0;
   margin: 0;
   font-family: var(--heading-font);
   font-size: 14px;
 }
 
-/*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
   position: relative;
@@ -1321,9 +1242,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Team Section
---------------------------------------------------------------*/
 .team .team-member {
   background-color: var(--surface-color);
   overflow: hidden;
@@ -1392,9 +1310,6 @@ section,
   bottom: 15px;
 }
 
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
 .contact .info-item+.info-item {
   margin-top: 40px;
 }
@@ -1467,9 +1382,7 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-/*--------------------------------------------------------------
-# Portfolio Details Section
---------------------------------------------------------------*/
+
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
 }
@@ -1534,7 +1447,7 @@ section,
 --------------------------------------------------------------*/
 .service-details .service-box {
   background-color: var(--surface-color);
-  padding: 20px;
+  padding: 25px 20px 20px 20px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -1548,6 +1461,10 @@ section,
   border-bottom: 2px solid color-mix(in srgb, var(--default-color), transparent 92%);
   padding-bottom: 15px;
   margin-bottom: 15px;
+}
+
+.main-content-box {
+  padding-top: 20px;
 }
 
 .service-details .services-list {
@@ -1583,10 +1500,18 @@ section,
   color: var(--contrast-color);
 }
 
-.service-details .services-list a:hover {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
-  color: var(--accent-color);
+.service-content {
+  display: none;
 }
+
+.service-content.active {
+  display: block;
+}
+
+/* .service-details .services-list a:hover {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+} */
 
 .service-details .download-catalog a {
   color: var(--default-color);
