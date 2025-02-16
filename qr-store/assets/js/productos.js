@@ -1,21 +1,21 @@
 // Simulación de productos para cada categoría
 const products = {
-    gaseosas: [
-      { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1lt.jpg', precio: '4.00' },
-      { name: 'Inca Kola 3L', image: 'assets/img/inca-kola-3lts.jpg', precio: '12.00' },
-      { name: 'Coca cola 3Lts', image: 'assets/img/coca-cola-3lts.jpg', precio: '12.00' }
-    ],
-    cervezas: [
-      { name: 'Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
-      { name: 'Cusqueña Negra', image: 'assets/img/c-negra.jpg', precio: '7.00'},
-      { name: 'Cusqueña Trigo', image: 'assets/img/c-trigo.jpg', precio: '7.00'}
-    ],
-    agua: [
-      { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg', precio: '1.00'},
-      { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png', precio: '1.00'},
-      { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg', precio: '1.00'}
-    ]
-  };
+  gaseosas: [
+    { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1lt.jpg', precio: '4.00' },
+    { name: 'Inca Kola 3L', image: 'assets/img/inca-kola-3lts.jpg', precio: '12.00' },
+    { name: 'Coca cola 3Lts', image: 'assets/img/coca-cola-3lts.jpg', precio: '12.00' }
+  ],
+  cervezas: [
+    { name: 'Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
+    { name: 'Cusqueña Negra', image: 'assets/img/c-negra.jpg', precio: '7.00'},
+    { name: 'Cusqueña Trigo', image: 'assets/img/c-trigo.jpg', precio: '7.00'}
+  ],
+  agua: [
+    { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg', precio: '1.00'},
+    { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png', precio: '1.00'},
+    { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg', precio: '1.00'}
+  ]
+};
   
   // Obtener la categoría seleccionada o mostrar todos los productos
   const selectedCategory = localStorage.getItem('selectedCategory');
@@ -38,15 +38,18 @@ const products = {
     productContainer.innerHTML = '';  // Limpiar los productos existentes
   
     productList.forEach(product => {
+      const flexContainer = document.createElement('div');  // Nuevo contenedor para `d-flex`
       const productCard = document.createElement('div');
 
-      productCard.classList.add('product-card','col');
+      flexContainer.classList.add('d-flex');
+      productCard.classList.add('col-4', 'p-1', 'p-md-2');
+      productCard.classList.add('product-card');
       productCard.innerHTML = `
         <div class="card text-bg-warning h-100">
           <img src="${product.image}" class="card-img-top h-100" alt="${product.name}">
-           <div class="card-footer px-1">
-            <p class="fs-6 mb-0">${product.name}</p>
-            <small>Precio: <span class="fw-bold">S/ ${product.precio}</span></small>
+          <div class="card-body px-1 text-center">
+            <h6 class="card-title">${product.name}</h6>
+            <p class="mb-0">Precio: <span class="fw-bold">S/ ${product.precio}</span></p>
           </div>
         </div>
       `;
