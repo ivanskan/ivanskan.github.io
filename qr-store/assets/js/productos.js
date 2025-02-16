@@ -1,12 +1,12 @@
 // Simulación de productos para cada categoría
 const products = {
   gaseosas: [
-    { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1lt.jpg', precio: '4.00' },
+    { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1l.jpg', precio: '4.00' },
     { name: 'Inca Kola 3L', image: 'assets/img/inca-kola-3lts.jpg', precio: '12.00' },
-    { name: 'Coca cola 3Lts', image: 'assets/img/coca-cola-3lts.jpg', precio: '12.00' }
+    { name: 'Coca Cola 3L', image: 'assets/img/coca-cola-3l.jpg', precio: '12.00' }
   ],
   cervezas: [
-    { name: 'Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
+    { name: 'Cerveza Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
     { name: 'Cusqueña Negra', image: 'assets/img/c-negra.jpg', precio: '7.00'},
     { name: 'Cusqueña Trigo', image: 'assets/img/c-trigo.jpg', precio: '7.00'}
   ],
@@ -47,9 +47,9 @@ const products = {
       productCard.innerHTML = `
         <div class="card text-bg-warning h-100">
           <img src="${product.image}" class="card-img-top h-100" alt="${product.name}">
-          <div class="card-body px-1 text-center">
-            <h6 class="card-title">${product.name}</h6>
-            <p class="mb-0">Precio: <span class="fw-bold">S/ ${product.precio}</span></p>
+          <div class="card-body px-1 text-center pb-0 mb-0">
+            <span class="card-title d-block mb-0">${product.name}</span>
+            <small class="mb-0">Precio: <span class="fw-bold">S/${product.precio}</small></p>
           </div>
         </div>
       `;
@@ -81,6 +81,8 @@ const products = {
     localStorage.removeItem('selectedCategory');  // Eliminar la categoría seleccionada
     displayAllProducts();  // Mostrar todos los productos
     categoryTitle.innerText = 'Todos los Productos';  // Cambiar el título
+      // Resetear el valor del dropdown al valor inicial (sin selección)
+    categorySelect.value = '';  // Resetea el dropdown a su estado inicial
   });
   
   // Cambiar productos según la categoría seleccionada en el dropdown
@@ -113,5 +115,18 @@ function displayProductsBasedOnCategory() {
   }
 }
 
+// Esperar a que el DOM esté completamente cargado
+window.addEventListener('DOMContentLoaded', function() {
+  const categorySelect = document.getElementById('category-select');
+  const selectedCategory = localStorage.getItem('selectedCategory');
 
-
+  // Si hay una categoría seleccionada, actualizar el dropdown
+  if (selectedCategory) {
+    categorySelect.value = selectedCategory;
+    categoryTitle.innerText = `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}`;
+    displayProducts(products[selectedCategory]);  // Mostrar los productos de la categoría seleccionada
+  } else {
+    categoryTitle.innerText = 'Todos los Productos';
+    displayAllProducts();  // Mostrar todos los productos si no hay categoría seleccionada
+  }
+});
