@@ -134,8 +134,6 @@
       color: var(--nav-hover-color);
     }
   
-
-
   /*--------------------------------------------------------------
   # Preloader
   --------------------------------------------------------------*/
@@ -220,20 +218,21 @@
   }
   
   .clear-icon {
+    position: absolute;
     right: 10px;
     font-size: 20px;
     cursor: pointer;
-    display: none;
+    display: none;  /* Inicialmente oculto */
   }
   
-  #search-input:focus + .clear-icon {
-    display: block; /* Mostrar la "X" cuando el input tiene foco */
+  /* Mostrar el ícono de "X" solo cuando hay texto en el input */
+  #search-input:not(:placeholder-shown) + .clear-icon {
+    display: block;  /* Muestra el ícono cuando el campo de búsqueda no está vacío */
   }
+  
 
   #content-detail {
-
     margin-bottom: 85px;
-
   }
 
   .breadcrumb {
@@ -243,17 +242,4 @@
   .form-select {
     max-width: 210px;
   }
-
-  /* .card {
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background: var(--accent-color);
-    cursor: pointer;
-  }
-   */
-
 
