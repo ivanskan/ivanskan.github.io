@@ -1,0 +1,267 @@
+:root {
+    --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --heading-font: "Raleway",  sans-serif;
+    --nav-font: "Poppins",  sans-serif;
+  }
+  
+  :root { 
+    --background-color: #ffffff;
+    --default-color: #444444;
+    --heading-color: #151515;
+    --accent-color: #ffc451;
+    --surface-color: #ffffff;
+    --contrast-color: #312f2f;
+  }
+  
+  /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+  :root {
+    --nav-color: rgba(255, 255, 255, 0.905);
+    --nav-hover-color: #ffc451;
+    --nav-mobile-background-color: #ffffff;
+    --nav-dropdown-background-color: #ffffff;
+    --nav-dropdown-color: #212529;
+    --nav-dropdown-hover-color: #ffc451;
+  }
+  
+  
+  .light-background {
+    --background-color: #f9f9f9;
+    --surface-color: #ffffff;
+  }
+  
+  .dark-background {
+    --background-color: #060606;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #252525;
+    --contrast-color: #2a2727;
+  }
+  
+  :root {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    color: var(--default-color);
+    background-color: var(--background-color);
+    font-family: var(--default-font);
+  }
+  
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  a:hover {
+    color: color-mix(in srgb, var(--accent-color), transparent 25%);
+    text-decoration: none;
+  }
+  
+  h1,  h2,  h3,  h4,  h5,  h6 {
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+  }
+  
+  .header {
+    color: var(--default-color);
+    background-color: rgb(122, 122, 122);
+    transition: all 0.5s;
+    z-index: 997;
+  }
+    
+  .scrolled .header {
+    box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Index Page Header
+  ------------------------------*/
+  .index-page .header {
+    --background-color: rgba(0, 0, 0, 0);
+  }
+  
+  /* Index Page Header on Scroll
+  ------------------------------*/
+  .index-page.scrolled .header {
+    --background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /*--------------------------------------------------------------
+  # Navigation Menu
+  --------------------------------------------------------------*/
+
+    .navmenu {
+      padding: 0;
+    }
+  
+    .navmenu ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+  
+    .navmenu li {
+      position: relative;
+    }
+  
+    .navmenu a,
+    .navmenu a:focus {
+      color: var(--nav-color);
+      padding: 10px 5px;
+      font-size: 16px;
+      font-family: var(--nav-font);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+  
+    .navmenu a i,
+    .navmenu a:focus i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+      transition: 0.3s;
+    }
+  
+    .navmenu li:hover>a,
+    .navmenu .active,
+    .navmenu .active:focus {
+      color: var(--nav-hover-color);
+    }
+  
+
+
+  /*--------------------------------------------------------------
+  # Preloader
+  --------------------------------------------------------------*/
+  #preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    overflow: hidden;
+    background: #000;
+    transition: all 0.6s ease-out;
+  }
+  
+  #preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #ffffff;
+    border-color: var(--accent-color) transparent var(--accent-color) transparent;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: animate-preloader 1.5s linear infinite;
+  }
+  
+  @keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .card-s {
+    /* width: 100%; */
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--accent-color);
+  }
+
+  .card-c {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgb(192, 190, 190);
+  }
+
+  .card-s img, .card-c img {
+    border-radius: 5px;
+  }
+
+
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  .search-icon {
+    left: 10px;
+  }
+  
+  #search-input {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .clear-icon {
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  #search-input:focus + .clear-icon {
+    display: block; /* Mostrar la "X" cuando el input tiene foco */
+  }
+
+  #content-detail {
+
+    margin-bottom: 85px;
+
+  }
+
+  .breadcrumb {
+    background: #7a7a7a;
+  }
+
+  .form-select {
+    max-width: 220px;
+  }
+
+  .card {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    /* flex-direction: column;
+    justify-content: space-between; */
+    background: var(--accent-color);
+    cursor: pointer;
+    height: auto;  /* Esto asegura que la tarjeta ocupe todo el espacio disponible */
+  }
+  
+  .product-card{
+    display: flex;
+  }
+  
+  
+
