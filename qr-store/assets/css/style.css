@@ -241,27 +241,19 @@
   }
 
   .form-select {
-    max-width: 220px;
+    max-width: 210px;
   }
 
-  .card {
+  /* .card {
     width: 100%;
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: flex;
-    /* flex-direction: column;
-    justify-content: space-between; */
     background: var(--accent-color);
     cursor: pointer;
-    height: auto;  /* Esto asegura que la tarjeta ocupe todo el espacio disponible */
   }
-  
-  .product-card{
-    display: flex;
-  }
-  
-  
+   */
+
 

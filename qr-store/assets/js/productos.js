@@ -1,19 +1,19 @@
 // Simulación de productos para cada categoría
 const products = {
     gaseosas: [
-      { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1lt.jpg' },
-      { name: 'Inca Kola 3L', image: 'assets/img/inca-kola-3lts.jpg' },
-      { name: 'Coca cola 3Lts', image: 'assets/img/coca-cola-3lts.jpg' }
+      { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1lt.jpg', precio: '4.00' },
+      { name: 'Inca Kola 3L', image: 'assets/img/inca-kola-3lts.jpg', precio: '12.00' },
+      { name: 'Coca cola 3Lts', image: 'assets/img/coca-cola-3lts.jpg', precio: '12.00' }
     ],
     cervezas: [
-      { name: 'Cristal', image: 'assets/img/c-cristal.webp' },
-      { name: 'Cusqueña Negra', image: 'assets/img/c-negra.jpg' },
-      { name: 'Cusqueña Trigo', image: 'assets/img/c-trigo.jpg' }
+      { name: 'Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
+      { name: 'Cusqueña Negra', image: 'assets/img/c-negra.jpg', precio: '7.00'},
+      { name: 'Cusqueña Trigo', image: 'assets/img/c-trigo.jpg', precio: '7.00'}
     ],
     agua: [
-      { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg' },
-      { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png' },
-      { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg' }
+      { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg', precio: '1.00'},
+      { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png', precio: '1.00'},
+      { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg', precio: '1.00'}
     ]
   };
   
@@ -38,17 +38,15 @@ const products = {
     productContainer.innerHTML = '';  // Limpiar los productos existentes
   
     productList.forEach(product => {
-      const flexContainer = document.createElement('div');  // Nuevo contenedor para `d-flex`
       const productCard = document.createElement('div');
 
-      flexContainer.classList.add('d-flex');
-      productCard.classList.add('col-4', 'p-1', 'p-md-2');
-      productCard.classList.add('product-card');
+      productCard.classList.add('product-card','col');
       productCard.innerHTML = `
-        <div class="card">
-          <img src="${product.image}" class="card-img-top" alt="${product.name}">
-          <div class="card-body">
-            <h6 class="card-title">${product.name}</h6>
+        <div class="card text-bg-warning h-100">
+          <img src="${product.image}" class="card-img-top h-100" alt="${product.name}">
+           <div class="card-footer px-1">
+            <p class="fs-6 mb-0">${product.name}</p>
+            <small>Precio: <span class="fw-bold">S/ ${product.precio}</span></small>
           </div>
         </div>
       `;
