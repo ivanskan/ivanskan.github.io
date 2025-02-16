@@ -23,7 +23,6 @@
     --nav-dropdown-hover-color: #ffc451;
   }
   
-  
   .light-background {
     --background-color: #f9f9f9;
     --surface-color: #ffffff;
@@ -74,15 +73,9 @@
     box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
   }
   
-  /* Index Page Header
+  /*Header on Scroll
   ------------------------------*/
-  .index-page .header {
-    --background-color: rgba(0, 0, 0, 0);
-  }
-  
-  /* Index Page Header on Scroll
-  ------------------------------*/
-  .index-page.scrolled .header {
+  .scrolled .header {
     --background-color: rgba(0, 0, 0, 0.8);
   }
   
@@ -169,37 +162,6 @@
     }
   }
 
-  .card-s {
-    /* width: 100%; */
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--accent-color);
-  }
-
-  .card-c {
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: rgb(192, 190, 190);
-  }
-
-  .card-s img, .card-c img {
-    border-radius: 5px;
-  }
-
-
   .tab-content {
     display: none;
   }
@@ -222,15 +184,13 @@
     right: 10px;
     font-size: 20px;
     cursor: pointer;
-    display: none;  /* Inicialmente oculto */
+    display: none; 
   }
   
-  /* Mostrar el ícono de "X" solo cuando hay texto en el input */
   #search-input:not(:placeholder-shown) + .clear-icon {
-    display: block;  /* Muestra el ícono cuando el campo de búsqueda no está vacío */
+    display: block; 
   }
   
-
   #content-detail {
     margin-bottom: 85px;
   }
@@ -242,4 +202,3 @@
   .form-select {
     max-width: 210px;
   }
-
