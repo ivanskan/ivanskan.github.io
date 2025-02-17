@@ -14,6 +14,17 @@ const products = {
     { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg', precio: '1.00' },
     { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png', precio: '1.00' },
     { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg', precio: '1.00' }
+  ],
+  leches: [
+    { name: 'Leche Gloria', image: 'assets/img/l-gloria.jpg', precio: '5.00' },
+    { name: 'Leche Ideal', image: 'assets/img/l-ideal.png', precio: '3.00' },
+    { name: 'Leche Gloria 200ml', image: 'assets/img/l-gloria-xs.jpg', precio: '2.50' }
+  ],
+  detergentes: [
+    { name: 'Ace', image: 'assets/img/d-ace.jpg', precio: '5.00' },
+    { name: 'Opal', image: 'assets/img/d-opal.jpg', precio: '3.00' },
+    { name: 'Trome', image: 'assets/img/d-trome.jpg', precio: '1.50' },
+    { name: 'Patito', image: 'assets/img/d-patito.jpg', precio: '1.50' }
   ]
 };
 
