@@ -31,7 +31,8 @@ function generateCategoryCards() {
     cardDiv.setAttribute('onclick', `window.location.href='productos.html'; selectCategory('${categoria.category}')`);
 
     const cardImg = document.createElement('img');
-    cardImg.classList.add('card-img-top', 'h-100');
+    cardImg.classList.add('card-img-top', 'h-100',);
+    cardImg.setAttribute('loading', 'lazy');
     cardImg.setAttribute('src', categoria.image);
     cardImg.setAttribute('alt', categoria.name);
 

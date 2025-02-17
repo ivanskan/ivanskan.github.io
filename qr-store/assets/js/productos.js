@@ -2,8 +2,20 @@
 const products = {
   gaseosas: [
     { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1l.jpg', precio: '4.00' },
-    { name: 'Inca Kola 3L', image: 'assets/img/inca-kola-3lts.jpg', precio: '12.00' },
-    { name: 'Coca Cola 3L', image: 'assets/img/coca-cola-3l.jpg', precio: '12.00' }
+    { name: 'Coca Cola 2L', image: 'assets/img/g-coca-2l.jpg', precio: '7.00' },
+    { name: 'Coca Cola 3L', image: 'assets/img/coca-cola-3l.jpg', precio: '12.00' },
+    { name: 'Inca Kola 625ml', image: 'assets/img/g-inca-gordita.jpg', precio: '3.00' },
+    { name: 'Inca Kola 1L', image: 'assets/img/g-inca-1l.jpg', precio: '4.00' },
+    { name: 'Inca Kola 2L', image: 'assets/img/g-inca-2l.png', precio: '12.00' },
+    { name: 'Inca Kola 3L', image: 'assets/img/g-inca-3l.jpg', precio: '12.00' },
+    { name: 'Guaraná 3L', image: 'assets/img/g-guarana-3l.jpg', precio: '10.00' },
+    { name: 'Guaraná 350ml', image: 'assets/img/g-guarana-350ml.jpg', precio: '1.00' },
+    { name: 'Big Cola 400ml', image: 'assets/img/g-big-400ml.jpg', precio: '1.00' },
+    { name: 'Big Cola 3L', image: 'assets/img/g-big-3l.jpg', precio: '8.00' },
+    { name: 'Pepsi 3L', image: 'assets/img/g-pepsi-3l.jpg', precio: '10.00' },
+    { name: 'Kr Piña 3L', image: 'assets/img/g-kr-piña-3l.jpg', precio: '10.00' },
+    { name: 'Kr Piña 400ml', image: 'assets/img/g-kr-piña-400ml.jpg', precio: '1.00' },
+    { name: 'Kr Limón 400ml', image: 'assets/img/g-kr-limon-400ml.jpg', precio: '1.00' },
   ],
   cervezas: [
     { name: 'Cerveza Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
@@ -14,6 +26,18 @@ const products = {
     { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg', precio: '1.00' },
     { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png', precio: '1.00' },
     { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg', precio: '1.00' }
+  ],
+  bebidas: [
+    { name: 'Pulp 350ml', image: 'assets/img/b-pulp-350ml.jpg', precio: '1.00' },
+    { name: 'Pulp 1L', image: 'assets/img/b-pulp-1l.jpg', precio: '1.00' },
+    { name: 'Volt 350ml', image: 'assets/img/b-volt-350ml.jpg', precio: '2.50' },
+    { name: 'Cifrut Naranja 350ml', image: 'assets/img/b-cifrut-naranja-350ml.jpg', precio: '1.00' },
+    { name: 'Cifrut Granadilla 350ml', image: 'assets/img/b-cifrut-granadilla-350ml.jpg', precio: '1.00' },
+    { name: 'Sporade 500ml', image: 'assets/img/b-sporade-500ml.jpg', precio: '2.50' },
+    { name: 'Powerade 600ml', image: 'assets/img/b-powerade-600ml.jpg', precio: '2.50' },
+    { name: 'Frugos del valle 500ml', image: 'assets/img/b-del-valle-500ml.jpg', precio: '2.00' },
+    { name: 'Frugos del valle 1.5L', image: 'assets/img/b-del-valle-1.5l.jpg', precio: '4.50' },
+    { name: 'Frugos del valle 3L', image: 'assets/img/b-del-valle-3l.jpg', precio: '7.50' },
   ],
   leches: [
     { name: 'Leche Gloria', image: 'assets/img/l-gloria.jpg', precio: '5.00' },
@@ -43,7 +67,7 @@ function displayProducts(productList) {
     productCard.classList.add('col-4', 'p-1', 'p-md-2', 'product-card');
     productCard.innerHTML = `
       <div class="card text-bg-warning h-100">
-        <img src="${product.image}" class="card-img-top h-100" alt="${product.name}">
+        <img src="${product.image}" class="card-img-top h-100" loading="lazy" alt="${product.name}">
         <div class="card-body px-1 text-center pb-0 mb-0">
           <span class="card-title d-block mb-0">${product.name}</span>
           <small class="mb-0">Precio: <span class="fw-bold">S/${product.precio}</small></p>
