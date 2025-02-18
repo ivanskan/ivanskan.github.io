@@ -34,6 +34,7 @@ const products = {
     { name: 'Yogurt Gloria Durazno 1L', image: 'assets/img/y-gloria-durazno-1l.jpg', precio: '5.00' },
     { name: 'Yogurt Gloria Fresa 200ml', image: 'assets/img/y-gloria-fresa-200ml.jpg', precio: '2.50' },
     { name: 'Yogurt Gloria Durazno 200ml', image: 'assets/img/y-gloria-durazno-200ml.jpg', precio: '2.50' },
+    { name: 'Yogurt Gloria Lucuma 200ml', image: 'assets/img/y-gloria-lucuma-200ml.jpg', precio: '2.50' },
   ],
   Bebidas: [
     { name: 'Pulp 350ml', image: 'assets/img/b-pulp-350ml.jpg', precio: '1.00' },
@@ -42,7 +43,8 @@ const products = {
     { name: 'Cifrut Naranja 350ml', image: 'assets/img/b-cifrut-naranja-350ml.jpg', precio: '1.00' },
     { name: 'Cifrut Granadilla 350ml', image: 'assets/img/b-cifrut-granadilla-350ml.jpg', precio: '1.00' },
     { name: 'Sporade 500ml', image: 'assets/img/b-sporade-500ml.jpg', precio: '2.50' },
-    { name: 'Powerade 600ml', image: 'assets/img/b-powerade-600ml.jpg', precio: '2.50' },
+    { name: 'Powerade Multifrutas 600ml', image: 'assets/img/b-powerade-multifrutas-600ml.jpg', precio: '2.50',  estado: 0 },
+    { name: 'Powerade Maracuyá 600ml', image: 'assets/img/b-powerade-maracuya-600ml.jpg', precio: '2.50' },
     { name: 'Frugos del valle 500ml', image: 'assets/img/b-del-valle-500ml.jpg', precio: '2.00' },
     { name: 'Frugos del valle 1.5L', image: 'assets/img/b-del-valle-1.5l.jpg', precio: '4.50' },
     { name: 'Frugos del valle 3L', image: 'assets/img/b-del-valle-3l.jpg', precio: '7.50' },
@@ -64,6 +66,10 @@ const products = {
     { name: 'Cocoa Winters', image: 'assets/img/dp-cocoa-winters.jpg', precio: '1.0' },
     { name: 'Manty', image: 'assets/img/dp-manty.jpg', precio: '2.50' },
     { name: 'Altomayo', image: 'assets/img/dp-altomayo.jpg', precio: '2.50' },
+    { name: 'Sal Marina', image: 'assets/img/dp-sal-marina.jpg', precio: '1.50' },
+    { name: 'Ajinomen', image: 'assets/img/dp-ajinomen.jpg', precio: '1.50' },
+    { name: 'Azucar Rubia 1Kg', image: 'assets/img/dp-azucar-rubia.jpg', precio: '3.50' },
+    { name: 'Arroz  D\'Leite 1Kg', image: 'assets/img/dp-arroz-d-leite.jpg', precio: '3.50' },
   ],
   Higiene: [
     { name: 'Papel Higiénico Noble', image: 'assets/img/h-noble.jpg', precio: '1.50' },
@@ -90,8 +96,11 @@ let isCompressedView = false;
 function generateNormalCard(product) {
   productContainer.classList.remove('row-cols-1');
   productContainer.classList.add('row-cols-3');
+  // const vis = product.estado == 0 ? 'product-status' : '';
+  // <div class="${vis}"></div>
   return `
     <div class="card text-bg-warning h-100">
+    
       <img src="${product.image}" class="card-img-top h-100" loading="lazy" alt="${product.name}">
       <div class="card-body px-1 text-center pb-0 mb-0">
         <span class="card-title d-block mb-0">${product.name}</span>
@@ -105,9 +114,12 @@ function generateNormalCard(product) {
 function generateCompressedCard(product) {
   productContainer.classList.remove('row-cols-3');
   productContainer.classList.add('row-cols-1');
+  // const vis = product.estado == 0 ? 'product-status1' : '';
+  // <div class="${vis} row"></div>
   return `
     <div class="card text-bg-warning w-100 px-2">
      <div  class="row">
+     
       <div  class="col-2 ps-1 d-flex justify-content-center align-items-center">
         <img src="${product.image}" class="img-comp w-100" loading="lazy" alt="${product.name}">
       </div>
