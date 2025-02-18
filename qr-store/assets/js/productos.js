@@ -1,6 +1,6 @@
 // Definir los productos de todas las categorías
 const products = {
-  gaseosas: [
+  Gaseosas: [
     { name: 'Coca Cola 1L', image: 'assets/img/coca-cola-1l.jpg', precio: '4.00' },
     { name: 'Coca Cola 2L', image: 'assets/img/g-coca-2l.jpg', precio: '7.00' },
     { name: 'Coca Cola 3L', image: 'assets/img/coca-cola-3l.jpg', precio: '12.00' },
@@ -17,17 +17,25 @@ const products = {
     { name: 'Kr Piña 400ml', image: 'assets/img/g-kr-piña-400ml.jpg', precio: '1.00' },
     { name: 'Kr Limón 400ml', image: 'assets/img/g-kr-limon-400ml.jpg', precio: '1.00' },
   ],
-  cervezas: [
+  Cervezas: [
     { name: 'Cerveza Cristal', image: 'assets/img/c-cristal.webp', precio: '6.50' },
     { name: 'Cusqueña Negra', image: 'assets/img/c-negra.jpg', precio: '7.00' },
     { name: 'Cusqueña Trigo', image: 'assets/img/c-trigo.jpg', precio: '7.00' }
   ],
-  aguas: [
-    { name: 'Agua Cielo', image: 'assets/img/a-cielo.jpg', precio: '1.00' },
-    { name: 'Agua Benedictino', image: 'assets/img/a-benedictino.png', precio: '1.00' },
-    { name: 'Agua San Luis', image: 'assets/img/a-san-luis.jpg', precio: '1.00' }
+  Aguas: [
+    { name: 'Agua Cielo 500ml', image: 'assets/img/a-cielo.jpg', precio: '1.00' },
+    { name: 'Agua Benedictino 1L', image: 'assets/img/a-benedictino.png', precio: '1.00' },
+    { name: 'Agua San Carlos 500ml', image: 'assets/img/a-san-luis.jpg', precio: '1.00' },
+    { name: 'Agua Benedictino 3L', image: 'assets/img/a-benedictino-3l.jpg', precio: '5.00' },
   ],
-  bebidas: [
+  Yogures: [
+    { name: 'Yogurt Gloria Fresa 1L', image: 'assets/img/y-gloria-fresa-1l.jpg', precio: '5.00' },
+    { name: 'Yogurt Gloria Vainilla 1L', image: 'assets/img/y-gloria-vainilla-1l.jpg', precio: '5.00' },
+    { name: 'Yogurt Gloria Durazno 1L', image: 'assets/img/y-gloria-durazno-1l.jpg', precio: '5.00' },
+    { name: 'Yogurt Gloria Fresa 200ml', image: 'assets/img/y-gloria-fresa-200ml.jpg', precio: '2.50' },
+    { name: 'Yogurt Gloria Durazno 200ml', image: 'assets/img/y-gloria-durazno-200ml.jpg', precio: '2.50' },
+  ],
+  Bebidas: [
     { name: 'Pulp 350ml', image: 'assets/img/b-pulp-350ml.jpg', precio: '1.00' },
     { name: 'Pulp 1L', image: 'assets/img/b-pulp-1l.jpg', precio: '1.00' },
     { name: 'Volt 350ml', image: 'assets/img/b-volt-350ml.jpg', precio: '2.50' },
@@ -39,16 +47,30 @@ const products = {
     { name: 'Frugos del valle 1.5L', image: 'assets/img/b-del-valle-1.5l.jpg', precio: '4.50' },
     { name: 'Frugos del valle 3L', image: 'assets/img/b-del-valle-3l.jpg', precio: '7.50' },
   ],
-  leches: [
+  Leches: [
     { name: 'Leche Gloria', image: 'assets/img/l-gloria.jpg', precio: '5.00' },
     { name: 'Leche Ideal', image: 'assets/img/l-ideal.png', precio: '3.00' },
     { name: 'Leche Gloria 200ml', image: 'assets/img/l-gloria-xs.jpg', precio: '2.50' }
   ],
-  detergentes: [
+  Detergentes: [
     { name: 'Ace', image: 'assets/img/d-ace.jpg', precio: '5.00' },
     { name: 'Opal', image: 'assets/img/d-opal.jpg', precio: '3.00' },
     { name: 'Trome', image: 'assets/img/d-trome.jpg', precio: '1.50' },
     { name: 'Patito', image: 'assets/img/d-patito.jpg', precio: '1.50' }
+  ],  
+  Despensa: [
+    { name: 'Aceite Primor 900ml', image: 'assets/img/dp-aceite-primor-900ml.jpg', precio: '8.00' },
+    { name: 'Aceite Primor 200ml', image: 'assets/img/dp-aceite-primor-200ml.jpg', precio: '2.50' },
+    { name: 'Cocoa Winters', image: 'assets/img/dp-cocoa-winters.jpg', precio: '1.0' },
+    { name: 'Manty', image: 'assets/img/dp-manty.jpg', precio: '2.50' },
+    { name: 'Altomayo', image: 'assets/img/dp-altomayo.jpg', precio: '2.50' },
+  ],
+  Higiene: [
+    { name: 'Papel Higiénico Noble', image: 'assets/img/h-noble.jpg', precio: '1.50' },
+    { name: 'Papel Higiénico Suave', image: 'assets/img/h-suave.jpg', precio: '1.50' },
+    { name: 'Pasta Dental Kolynos', image: 'assets/img/h-kolynos.jpg', precio: '2.50' },
+    { name: 'Pasta Dental Dento', image: 'assets/img/h-dento.jpg', precio: '2.50' },
+    { name: 'Champú head & Shoulders', image: 'assets/img/h-champu-hs.webp', precio: '2.50' },
   ]
 };
 
@@ -84,10 +106,10 @@ function generateCompressedCard(product) {
   productContainer.classList.remove('row-cols-3');
   productContainer.classList.add('row-cols-1');
   return `
-    <div class="card text-bg-warning w-100 px-2 border border-danger">
+    <div class="card text-bg-warning w-100 px-2">
      <div  class="row">
       <div  class="col-2 ps-1 d-flex justify-content-center align-items-center">
-        <img src="${product.image}" class="img-comp w-100" alt="${product.name}">
+        <img src="${product.image}" class="img-comp w-100" loading="lazy" alt="${product.name}">
       </div>
       <div class="card-body py-0 d-flex align-items-center col-10">
         <h6 class="card-title w-75 mb-0">${product.name}</h6>
@@ -103,7 +125,7 @@ function displayProducts(productList, isCompressed = false) {
   productContainer.innerHTML = '';  // Limpiar los productos existentes
   productList.forEach(product => {
     const productCard = document.createElement('div');
-    productCard.classList.add('col', 'p-1', 'p-md-2', 'product-card');
+    productCard.classList.add('col', 'p-1', 'p-md-2', 'mt-0', 'product-card');
     productCard.innerHTML = isCompressed
       ? generateCompressedCard(product)  // Vista comprimida
       : generateNormalCard(product);    // Vista normal
@@ -117,6 +139,7 @@ btnNormal.addEventListener('click', () => {
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
   displayProducts(allProducts, false);  // Mostrar en vista normal
+  searchInput.value = '';  // Limpiar el valor del input de búsqueda
   btnNormal.classList.remove('btn-secondary');
   btnNormal.classList.add('btn-primary');
   btnCompresed.classList.remove('btn-primary');
@@ -128,6 +151,7 @@ btnCompresed.addEventListener('click', () => {
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
   displayProducts(allProducts, true);  // Mostrar en vista comprimida
+  searchInput.value = '';  // Limpiar el valor del input de búsqueda
   btnCompresed.classList.remove('btn-secondary');
   btnCompresed.classList.add('btn-primary');
   btnNormal.classList.remove('btn-primary');
@@ -138,7 +162,8 @@ btnCompresed.addEventListener('click', () => {
 function displayCategoryProducts() {
   const selectedCategory = localStorage.getItem('selectedCategory');
   if (selectedCategory) {
-    categoryTitle.innerText = `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}`;
+    // categoryTitle.innerText = `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}`;
+    categoryTitle.innerText = selectedCategory;
     categorySelect.value = selectedCategory; // Establecer el valor del dropdown
     const categoryProducts = products[selectedCategory];
     displayProducts(categoryProducts, isCompressedView);  // Mostrar productos según la vista seleccionada

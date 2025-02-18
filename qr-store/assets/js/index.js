@@ -8,14 +8,15 @@ document.querySelectorAll('.category-card').forEach(card => {
 
  // Definir todas las categorías
  const categorias = [
-  { name: 'Gaseosas', image: 'assets/img/soda-group.jpg', category: 'gaseosas' },
-  { name: 'Cervezas', image: 'assets/img/cerveza-group.webp', category: 'cervezas' },
-  { name: 'Bebidas', image: 'assets/img/bebidas-category.avif', category: 'bebidas' },
-  { name: 'Agua', image: 'assets/img/water-group.jpg', category: 'aguas' },
-  { name: 'Despensa', image: 'assets/img/despensa.jpeg', category: 'despensa' },
-  { name: 'Leches', image: 'assets/img/leche-category.jpg', category: 'leches' },
-  { name: 'Detergentes', image: 'assets/img/detergente-category.jpg', category: 'detergentes' },
-  { name: 'Higiene', image: 'assets/img/higiene-category.jpg', category: 'higiene' },
+  { category: 'Gaseosas', image: 'assets/img/soda-group.jpg' },
+  { category: 'Cervezas', image: 'assets/img/cerveza-group.webp' },
+  { category: 'Bebidas', image: 'assets/img/bebidas-category.avif' },
+  { category: 'Yogures', image: 'assets/img/yogurt-category.jpg' },
+  { category: 'Aguas', image: 'assets/img/water-group.jpg' },
+  { category: 'Despensa', image: 'assets/img/despensa.jpeg' },
+  { category: 'Leches', image: 'assets/img/leche-category.jpg' },
+  { category: 'Detergentes', image: 'assets/img/detergente-category.jpg' },
+  { category: 'Higiene', image: 'assets/img/higiene-category.jpg' },
 ];
 
 // Función para generar las tarjetas dinámicamente
@@ -34,7 +35,7 @@ function generateCategoryCards() {
     cardImg.classList.add('card-img-top', 'h-100',);
     cardImg.setAttribute('loading', 'lazy');
     cardImg.setAttribute('src', categoria.image);
-    cardImg.setAttribute('alt', categoria.name);
+    cardImg.setAttribute('alt', categoria.category);
 
     const cardBodyDiv = document.createElement('div');
     cardBodyDiv.classList.add('card-body');
@@ -47,7 +48,7 @@ function generateCategoryCards() {
 
     const title = document.createElement('h6');
     title.classList.add('card-title', 'mb-0', 'ms-1');
-    title.innerText = categoria.name;
+    title.innerText = categoria.category;
 
     // Append los elementos
     cardContentDiv.appendChild(icon);
