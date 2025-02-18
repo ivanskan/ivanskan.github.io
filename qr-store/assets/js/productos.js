@@ -219,6 +219,14 @@ searchInput.addEventListener('input', function() {
   });
 });
 
+// Detectamos cuando se presiona "Enter" o el botón "Ir"
+searchInput.addEventListener('keydown', function(event) {
+  if (event.key === "Enter") {
+    // Si el usuario presiona "Enter", se cierra el teclado
+    this.blur(); // Cierra el teclado
+  }
+});
+
 // Función para limpiar la búsqueda al hacer clic en el ícono
 clearIcon.addEventListener('click', () => {
   searchInput.value = '';  // Limpiar el valor del input de búsqueda
