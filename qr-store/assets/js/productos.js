@@ -58,60 +58,101 @@ const categorySelect = document.getElementById('category-select');
 const productContainer = document.getElementById('product-list');
 const searchInput = document.getElementById('search-input');
 const clearIcon = document.getElementById('clear-icon');
+const btnNormal = document.getElementById('viewNormal');
+const btnCompresed = document.getElementById('viewCompressed');
 
-// Mostrar productos según la categoría seleccionada
-function displayProducts(productList) {
+// Variable para mantener el estado de la vista
+let isCompressedView = false;
+
+// Función para generar las tarjetas en vista normal
+function generateNormalCard(product) {
+  productContainer.classList.remove('row-cols-1');
+  productContainer.classList.add('row-cols-3');
+  return `
+    <div class="card text-bg-warning h-100">
+      <img src="${product.image}" class="card-img-top h-100" loading="lazy" alt="${product.name}">
+      <div class="card-body px-1 text-center pb-0 mb-0">
+        <span class="card-title d-block mb-0">${product.name}</span>
+        <small class="mb-0">Precio: <span class="fw-bold">S/${product.precio}</span></small>
+      </div>
+    </div>
+  `;
+}
+
+// Función para generar las tarjetas en vista comprimida
+function generateCompressedCard(product) {
+  productContainer.classList.remove('row-cols-3');
+  productContainer.classList.add('row-cols-1');
+  return `
+    <div class="card text-bg-warning w-100">
+     <div  class="row">
+      <div  class="col-2 pe-0 d-flex justify-content-center align-items-center">
+        <img src="${product.image}" class="img-comp w-100" alt="${product.name}">
+      </div>
+      <div class="card-body py-0 d-flex align-items-center col-10">
+        <h6 class="card-title w-75 mb-0">${product.name}</h6>
+        <p class="card-text w-25 text-end"><small class="text-body-secondary">S/${product.precio}</small></p>
+      </div>
+    </div>
+    </div>
+  `;
+}
+
+// Función para mostrar los productos en el contenedor de la vista normal o comprimida
+function displayProducts(productList, isCompressed = false) {
   productContainer.innerHTML = '';  // Limpiar los productos existentes
   productList.forEach(product => {
     const productCard = document.createElement('div');
-    productCard.classList.add('col-4', 'p-1', 'p-md-2', 'product-card');
-    productCard.innerHTML = `
-      <div class="card text-bg-warning h-100">
-        <img src="${product.image}" class="card-img-top h-100" loading="lazy" alt="${product.name}">
-        <div class="card-body px-1 text-center pb-0 mb-0">
-          <span class="card-title d-block mb-0">${product.name}</span>
-          <small class="mb-0">Precio: <span class="fw-bold">S/${product.precio}</small></p>
-        </div>
-      </div>
-    `;
+    productCard.classList.add('col', 'p-1', 'p-md-2', 'product-card');
+    productCard.innerHTML = isCompressed
+      ? generateCompressedCard(product)  // Vista comprimida
+      : generateNormalCard(product);    // Vista normal
     productContainer.appendChild(productCard);
   });
 }
 
-// Función para mostrar todos los productos
-function displayAllProducts() {
-  const allProducts = Object.values(products).flat();
-  displayProducts(allProducts);
-}
+// Cambiar la vista cuando se presionen los botones
+btnNormal.addEventListener('click', () => {
+  isCompressedView = false;  // Cambiar a vista normal
+  const selectedCategory = localStorage.getItem('selectedCategory');
+  const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
+  displayProducts(allProducts, false);  // Mostrar en vista normal
+  btnNormal.classList.remove('btn-secondary');
+  btnNormal.classList.add('btn-primary');
+  btnCompresed.classList.remove('btn-primary');
+  btnCompresed.classList.add('btn-secondary');
+});
 
-// Función para mostrar productos basados en la categoría
+btnCompresed.addEventListener('click', () => {
+  isCompressedView = true;  // Cambiar a vista comprimida
+  const selectedCategory = localStorage.getItem('selectedCategory');
+  const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
+  displayProducts(allProducts, true);  // Mostrar en vista comprimida
+  btnCompresed.classList.remove('btn-secondary');
+  btnCompresed.classList.add('btn-primary');
+  btnNormal.classList.remove('btn-primary');
+  btnNormal.classList.add('btn-secondary');
+});
+
+// Función para mostrar productos basados en la categoría seleccionada
 function displayCategoryProducts() {
   const selectedCategory = localStorage.getItem('selectedCategory');
   if (selectedCategory) {
     categoryTitle.innerText = `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}`;
     categorySelect.value = selectedCategory; // Establecer el valor del dropdown
-    displayProducts(products[selectedCategory]);
+    const categoryProducts = products[selectedCategory];
+    displayProducts(categoryProducts, isCompressedView);  // Mostrar productos según la vista seleccionada
   } else {
     categoryTitle.innerText = 'Todos los Productos';
     displayAllProducts();
   }
 }
 
-// Manejo del filtro de búsqueda
-searchInput.addEventListener('input', function() {
-  const query = this.value.toLowerCase();
-  document.querySelectorAll('.product-card').forEach(card => {
-    const productName = card.querySelector('.card-title').textContent.toLowerCase();
-    card.style.display = productName.includes(query) ? 'flex' : 'none';
-  });
-});
-
-
-// Función para limpiar la búsqueda al hacer clic en el ícono
-clearIcon.addEventListener('click', () => {
-  searchInput.value = '';  // Limpiar el valor del input de búsqueda
-  displayCategoryProducts();  // Volver a mostrar los productos de la categoría seleccionada o todos los productos
-});
+// Función para mostrar todos los productos
+function displayAllProducts() {
+  const allProducts = Object.values(products).flat();
+  displayProducts(allProducts, isCompressedView);  // Mantener la vista seleccionada
+}
 
 // Actualizar productos al cambiar la categoría en el dropdown
 categorySelect.addEventListener('change', function() {
@@ -128,5 +169,21 @@ document.getElementById('btnAllProducts').addEventListener('click', () => {
   localStorage.removeItem('selectedCategory');  // Eliminar la categoría seleccionada
   categorySelect.value = '';  // Resetear el dropdown
   displayAllProducts();  // Mostrar todos los productos
+  searchInput.value = '';
   categoryTitle.innerText = 'Todos los Productos';
+});
+
+// Función para manejar el filtro de búsqueda
+searchInput.addEventListener('input', function() {
+  const query = this.value.toLowerCase();
+  document.querySelectorAll('.product-card').forEach(card => {
+    const productName = card.querySelector('.card-title').textContent.toLowerCase();
+    card.style.display = productName.includes(query) ? 'flex' : 'none';
+  });
+});
+
+// Función para limpiar la búsqueda al hacer clic en el ícono
+clearIcon.addEventListener('click', () => {
+  searchInput.value = '';  // Limpiar el valor del input de búsqueda
+  displayCategoryProducts();  // Volver a mostrar los productos de la categoría seleccionada o todos los productos
 });
