@@ -84,14 +84,14 @@ function generateCompressedCard(product) {
   productContainer.classList.remove('row-cols-3');
   productContainer.classList.add('row-cols-1');
   return `
-    <div class="card text-bg-warning w-100">
+    <div class="card text-bg-warning w-100 px-2 border border-danger">
      <div  class="row">
-      <div  class="col-2 pe-0 d-flex justify-content-center align-items-center">
+      <div  class="col-2 ps-1 d-flex justify-content-center align-items-center">
         <img src="${product.image}" class="img-comp w-100" alt="${product.name}">
       </div>
       <div class="card-body py-0 d-flex align-items-center col-10">
         <h6 class="card-title w-75 mb-0">${product.name}</h6>
-        <p class="card-text w-25 text-end"><small class="text-body-secondary">S/${product.precio}</small></p>
+        <p class="card-text w-25 text-end"><small class="fw-bold">S/${product.precio}</small></p>
       </div>
     </div>
     </div>
