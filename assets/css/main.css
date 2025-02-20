@@ -632,6 +632,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .service-box ol li+li::before {
   content: "/";
+  color: black;
   display: inline-block;
   padding-left: 10px;
   padding-right: 10px;
@@ -651,6 +652,17 @@ section,
   section,
   .section {
     scroll-margin-top: 58px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  section,
+  .section {
+    padding-bottom: 0;
+  }
+  footer {
+    margin-top: 50px;
   }
 }
 
