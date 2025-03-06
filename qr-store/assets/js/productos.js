@@ -226,6 +226,7 @@ categorySelect.addEventListener('change', function() {
   const category = this.value;
   localStorage.setItem('selectedCategory', category || '');  // Guardar la categoría seleccionada
   displayCategoryProducts();
+  searchInput.value = '';
 });
 
 // Inicializar el estado de la categoría y mostrar los productos al cargar la página
