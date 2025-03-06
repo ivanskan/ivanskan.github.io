@@ -1,3 +1,18 @@
+<?php
+  session_start();
+  require_once __DIR__.'/contact/vendor/autoload.php';
+  require_once __DIR__.'/contact/config.php';
+
+  if (!empty($_SESSION['_contact_form_error'])) {
+      $error = $_SESSION['_contact_form_error'];
+      unset($_SESSION['_contact_form_error']);
+  }
+
+  if (!empty($_SESSION['_contact_form_success'])) {
+      $success = true;
+      unset($_SESSION['_contact_form_success']);
+  }
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,6 +28,7 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="index-page">
@@ -48,19 +64,6 @@
         </div>
       </div>
     </section>
-
-<!-- Código para mostrar el Toast -->
-<script>
-  // Obtener el Toast
-  var toastEl = document.getElementById('liveToast');
-
-  // Crear el objeto Toast
-  var toast = new bootstrap.Toast(toastEl);
-
-  // Mostrar el Toast
-  toast.show();
-</script>
-
 
     <section id="about" class="about section">
       <div class="container section-title" data-aos="fade-up">
@@ -217,7 +220,7 @@
           <div class="col-xl-10">
             <div class="text-center">
               <p class="fs-4">"La tecnología está cambiando, estás listo para ser parte de la transformación?"</p>
-              <a class="cta-btn" href="contact/index.php">Contactanos!</a>
+              <a class="cta-btn" href="#contact">Contactanos!</a>
             </div>
           </div>
         </div>
@@ -288,6 +291,20 @@
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
+          <?php
+            if (!empty($success)) {
+                ?>
+                <div class="alert alert-success">Su mensaje ha sido enviado con éxito!</div>
+                <?php
+            }
+          ?>
+          <?php
+            if (!empty($error)) {
+                ?>
+                <div class="alert alert-danger"><?= $error ?></div>
+                <?php
+            }
+          ?>
           <div class="col-lg-4">
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-geo-alt flex-shrink-0"></i>
@@ -311,8 +328,9 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-8">
-            <form action="php-mailer/send_email.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form method="post" action="contact/submit.php" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
                 <div class="col-md-6">
                   <input type="text" name="name" class="form-control" placeholder="Su nombre" required="">
@@ -325,6 +343,9 @@
                 </div>
                 <div class="col-md-12">
                   <textarea class="form-control" name="message" rows="6" placeholder="Mensaje" required=""></textarea>
+                </div>
+                <div class="col-md-6">
+                    <div class="g-recaptcha" data-sitekey="<?= CONTACTFORM_RECAPTCHA_SITE_KEY ?>"></div>
                 </div>
                 <div class="col-md-12">
                   <div class="loading">Cargando</div>
