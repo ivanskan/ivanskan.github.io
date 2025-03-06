@@ -88,6 +88,7 @@ const searchInput = document.getElementById('search-input');
 const clearIcon = document.getElementById('clear-icon');
 const btnNormal = document.getElementById('viewNormal');
 const btnCompresed = document.getElementById('viewCompressed');
+let searchQuery = '';
 
 // Variable para mantener el estado de la vista
 let isCompressedView = false;
@@ -150,8 +151,10 @@ btnNormal.addEventListener('click', () => {
   isCompressedView = false;  // Cambiar a vista normal
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-  displayProducts(allProducts, false);  // Mostrar en vista normal
-  searchInput.value = '';  // Limpiar el valor del input de búsqueda
+  const filteredProducts = allProducts.filter(product =>
+    product.name.toLowerCase().includes(searchQuery)
+  );  // Filtrar productos por búsqueda
+  displayProducts(filteredProducts, false);  // Mostrar en vista normal
   btnNormal.classList.remove('btn-secondary');
   btnNormal.classList.add('btn-primary');
   btnCompresed.classList.remove('btn-primary');
@@ -162,13 +165,40 @@ btnCompresed.addEventListener('click', () => {
   isCompressedView = true;  // Cambiar a vista comprimida
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-  displayProducts(allProducts, true);  // Mostrar en vista comprimida
-  searchInput.value = '';  // Limpiar el valor del input de búsqueda
+  const filteredProducts = allProducts.filter(product =>
+    product.name.toLowerCase().includes(searchQuery)
+  );  // Filtrar productos por búsqueda
+  displayProducts(filteredProducts, true);  // Mostrar en vista comprimida
   btnCompresed.classList.remove('btn-secondary');
   btnCompresed.classList.add('btn-primary');
   btnNormal.classList.remove('btn-primary');
   btnNormal.classList.add('btn-secondary');
 });
+
+// // Cambiar la vista cuando se presionen los botones
+// btnNormal.addEventListener('click', () => {
+//   isCompressedView = false;  // Cambiar a vista normal
+//   const selectedCategory = localStorage.getItem('selectedCategory');
+//   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
+//   displayProducts(allProducts, false);  // Mostrar en vista normal
+//   // searchInput.value = '';  // Limpiar el valor del input de búsqueda
+//   btnNormal.classList.remove('btn-secondary');
+//   btnNormal.classList.add('btn-primary');
+//   btnCompresed.classList.remove('btn-primary');
+//   btnCompresed.classList.add('btn-secondary');
+// });
+
+// btnCompresed.addEventListener('click', () => {
+//   isCompressedView = true;  // Cambiar a vista comprimida
+//   const selectedCategory = localStorage.getItem('selectedCategory');
+//   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
+//   displayProducts(allProducts, true);  // Mostrar en vista comprimida
+//   // searchInput.value = '';  // Limpiar el valor del input de búsqueda
+//   btnCompresed.classList.remove('btn-secondary');
+//   btnCompresed.classList.add('btn-primary');
+//   btnNormal.classList.remove('btn-primary');
+//   btnNormal.classList.add('btn-secondary');
+// });
 
 // Función para mostrar productos basados en la categoría seleccionada
 function displayCategoryProducts() {
@@ -211,13 +241,31 @@ document.getElementById('btnAllProducts').addEventListener('click', () => {
 });
 
 // Función para manejar el filtro de búsqueda
+// searchInput.addEventListener('input', function() {
+//   const query = this.value.toLowerCase();
+//   document.querySelectorAll('.product-card').forEach(card => {
+//     const productName = card.querySelector('.card-title').textContent.toLowerCase();
+//     card.style.display = productName.includes(query) ? 'flex' : 'none';
+//   });
+// });
+
 searchInput.addEventListener('input', function() {
-  const query = this.value.toLowerCase();
-  document.querySelectorAll('.product-card').forEach(card => {
-    const productName = card.querySelector('.card-title').textContent.toLowerCase();
-    card.style.display = productName.includes(query) ? 'flex' : 'none';
-  });
+  searchQuery = this.value.toLowerCase();  // Guardar la consulta de búsqueda
+  filterAndDisplayProducts();  // Aplicar el filtro después de cada búsqueda
 });
+
+function filterAndDisplayProducts() {
+  const selectedCategory = localStorage.getItem('selectedCategory');
+  const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
+  // Filtrar productos por nombre, según el valor de búsqueda
+  const filteredProducts = allProducts.filter(product => 
+    product.name.toLowerCase().includes(searchQuery)
+  );
+  // Mostrar los productos filtrados en la vista seleccionada
+  displayProducts(filteredProducts, isCompressedView);
+}
+
+
 
 // Detectamos cuando se presiona "Enter" o el botón "Ir"
 searchInput.addEventListener('keydown', function(event) {
