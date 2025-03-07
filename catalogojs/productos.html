@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PKcorp | Catalogo Digital</title>
   <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/bootstrap/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="assets/logo.ico" type="image/x-icon">
 </head>
@@ -43,21 +42,11 @@
     <div class="my-3 d-flex justify-content-between">
       <select id="category-select" class="form-select ">
         <option value="">Seleccionar Categoría</option>
-        <option value="Gaseosas">Gaseosas</option>
-        <option value="Cervezas">Cervezas</option>
-        <option value="Bebidas">Bebidas</option>
-        <option value="Yogures">Yogures</option>
-        <option value="Aguas">Aguas</option>
-        <option value="Leches">Leches</option>
-        <option value="Detergentes">Detergentes</option>
-        <option value="Despensa">Despensa</option>
-        <option value="Higiene">Higiene</option>
       </select>
       <button class="btn btn-warning" id="btnAllProducts"><i class="bi bi-bag-fill pe-2"></i>Ver Todos</button>
     </div>
 
     <!-- Filtro de búsqueda -->
-
     <div class="d-flex align-items-center w-100 position-relative mb-3">
       <span class="search-icon position-absolute"><i class="bi bi-search"></i></span>
       <input type="text" id="search-input" class="form-control" placeholder="Buscar productos...">
@@ -84,6 +73,7 @@
 
   <div id="preloader"></div>
 
+  <script src="data.js"></script> <!-- Cargar los datos primero -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/productos.js"></script>
 
