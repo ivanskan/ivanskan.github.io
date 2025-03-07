@@ -121,10 +121,10 @@ function generateCompressedCard(product) {
     <div class="card text-bg-warning w-100 px-2">
      <div  class="row">
      
-      <div  class="col-2 ps-1 d-flex justify-content-center align-items-center">
+      <div  class="col-2 col-md-1 ps-1 d-flex justify-content-center align-items-center">
         <img src="${product.image}" class="img-comp w-100" loading="lazy" alt="${product.name}">
       </div>
-      <div class="card-body py-0 d-flex align-items-center col-10">
+      <div class="card-body py-0 d-flex align-items-center col-10 col-md-11">
         <h6 class="card-title w-75 mb-0">${product.name}</h6>
         <p class="card-text w-25 text-end"><small class="fw-bold">S/${product.precio}</small></p>
       </div>
@@ -146,15 +146,14 @@ function displayProducts(productList, isCompressed = false) {
   });
 }
 
+
 // Cambiar la vista cuando se presionen los botones
 btnNormal.addEventListener('click', () => {
   isCompressedView = false;  // Cambiar a vista normal
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-  const filteredProducts = allProducts.filter(product =>
-    product.name.toLowerCase().includes(searchQuery)
-  );  // Filtrar productos por búsqueda
-  displayProducts(filteredProducts, false);  // Mostrar en vista normal
+  displayProducts(allProducts, false);  // Mostrar en vista normal
+  // searchInput.value = '';  // Limpiar el valor del input de búsqueda
   btnNormal.classList.remove('btn-secondary');
   btnNormal.classList.add('btn-primary');
   btnCompresed.classList.remove('btn-primary');
@@ -165,40 +164,13 @@ btnCompresed.addEventListener('click', () => {
   isCompressedView = true;  // Cambiar a vista comprimida
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-  const filteredProducts = allProducts.filter(product =>
-    product.name.toLowerCase().includes(searchQuery)
-  );  // Filtrar productos por búsqueda
-  displayProducts(filteredProducts, true);  // Mostrar en vista comprimida
+  displayProducts(allProducts, true);  // Mostrar en vista comprimida
+  // searchInput.value = '';  // Limpiar el valor del input de búsqueda
   btnCompresed.classList.remove('btn-secondary');
   btnCompresed.classList.add('btn-primary');
   btnNormal.classList.remove('btn-primary');
   btnNormal.classList.add('btn-secondary');
 });
-
-// // Cambiar la vista cuando se presionen los botones
-// btnNormal.addEventListener('click', () => {
-//   isCompressedView = false;  // Cambiar a vista normal
-//   const selectedCategory = localStorage.getItem('selectedCategory');
-//   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-//   displayProducts(allProducts, false);  // Mostrar en vista normal
-//   // searchInput.value = '';  // Limpiar el valor del input de búsqueda
-//   btnNormal.classList.remove('btn-secondary');
-//   btnNormal.classList.add('btn-primary');
-//   btnCompresed.classList.remove('btn-primary');
-//   btnCompresed.classList.add('btn-secondary');
-// });
-
-// btnCompresed.addEventListener('click', () => {
-//   isCompressedView = true;  // Cambiar a vista comprimida
-//   const selectedCategory = localStorage.getItem('selectedCategory');
-//   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-//   displayProducts(allProducts, true);  // Mostrar en vista comprimida
-//   // searchInput.value = '';  // Limpiar el valor del input de búsqueda
-//   btnCompresed.classList.remove('btn-secondary');
-//   btnCompresed.classList.add('btn-primary');
-//   btnNormal.classList.remove('btn-primary');
-//   btnNormal.classList.add('btn-secondary');
-// });
 
 // Función para mostrar productos basados en la categoría seleccionada
 function displayCategoryProducts() {
@@ -241,30 +213,14 @@ document.getElementById('btnAllProducts').addEventListener('click', () => {
   categoryTitle.innerText = 'Todos los Productos';
 });
 
-// Función para manejar el filtro de búsqueda
-// searchInput.addEventListener('input', function() {
-//   const query = this.value.toLowerCase();
-//   document.querySelectorAll('.product-card').forEach(card => {
-//     const productName = card.querySelector('.card-title').textContent.toLowerCase();
-//     card.style.display = productName.includes(query) ? 'flex' : 'none';
-//   });
-// });
-
+//Función para manejar el filtro de búsqueda
 searchInput.addEventListener('input', function() {
-  searchQuery = this.value.toLowerCase();  // Guardar la consulta de búsqueda
-  filterAndDisplayProducts();  // Aplicar el filtro después de cada búsqueda
+  const query = this.value.toLowerCase();
+  document.querySelectorAll('.product-card').forEach(card => {
+    const productName = card.querySelector('.card-title').textContent.toLowerCase();
+    card.style.display = productName.includes(query) ? 'flex' : 'none';
+  });
 });
-
-function filterAndDisplayProducts() {
-  const selectedCategory = localStorage.getItem('selectedCategory');
-  const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
-  // Filtrar productos por nombre, según el valor de búsqueda
-  const filteredProducts = allProducts.filter(product => 
-    product.name.toLowerCase().includes(searchQuery)
-  );
-  // Mostrar los productos filtrados en la vista seleccionada
-  displayProducts(filteredProducts, isCompressedView);
-}
 
 
 
