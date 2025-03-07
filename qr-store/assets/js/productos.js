@@ -153,7 +153,7 @@ btnNormal.addEventListener('click', () => {
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
   displayProducts(allProducts, false);  // Mostrar en vista normal
-  // searchInput.value = '';  // Limpiar el valor del input de búsqueda
+  searchInput.value = '';  // Limpiar el valor del input de búsqueda
   btnNormal.classList.remove('btn-secondary');
   btnNormal.classList.add('btn-primary');
   btnCompresed.classList.remove('btn-primary');
@@ -165,7 +165,7 @@ btnCompresed.addEventListener('click', () => {
   const selectedCategory = localStorage.getItem('selectedCategory');
   const allProducts = selectedCategory ? products[selectedCategory] : Object.values(products).flat();
   displayProducts(allProducts, true);  // Mostrar en vista comprimida
-  // searchInput.value = '';  // Limpiar el valor del input de búsqueda
+  searchInput.value = '';  // Limpiar el valor del input de búsqueda
   btnCompresed.classList.remove('btn-secondary');
   btnCompresed.classList.add('btn-primary');
   btnNormal.classList.remove('btn-primary');
