@@ -162,3 +162,11 @@ btnAllProducts.addEventListener('click', () => {
   displayAllProducts();  // Mostrar todos los productos sin filtro de categoría
   categoryTitle.innerText = 'Todos los Productos'; // Título correcto
 });
+
+// Detectamos cuando se presiona "Enter" o el botón "Ir"
+searchInput.addEventListener('keydown', function(event) {
+  if (event.key === "Enter") {
+    // Si el usuario presiona "Enter", se cierra el teclado
+    this.blur(); // Cierra el teclado
+  }
+});
