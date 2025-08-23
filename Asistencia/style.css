@@ -15,11 +15,6 @@ th, td {
     padding: 8px; 
 }
 
-input[type="text"] { 
-    padding: 6px; 
-    width: 200px; 
-}
-
 body {
     font-family: 'Segoe UI', sans-serif;
     padding: 20px;
@@ -56,13 +51,6 @@ tr:hover {
     background-color: #e6f7ff;  
 }
 
-input[type="text"] {
-    padding: 6px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
 button {
     padding: 6px 12px;
     border: none;
@@ -81,3 +69,4 @@ button:hover {
     margin-top: 15px;
     font-weight: bold;
 }
+

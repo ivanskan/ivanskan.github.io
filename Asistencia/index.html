@@ -16,16 +16,36 @@
     <input class="form-control form-control-sm" type="file" id="input-excel" accept=".xlsx">
   </div>
 
-  <div id="registro" style="display:none;">
-    <h3>Buscar por DNI</h3>
-    <input type="text" id="dni-input" placeholder="Ingrese DNI" />
-    <button class="btn btn-primary" onclick="registrarAsistencia()">Registrar Asistencia</button>
-  </div>
+  <!-- <div id="registro" style="display:none;"> -->
+    <div id="registro"></div>
 
-  <div style="margin-top:30px;">
-  <button id="btnMostrarAgregar" class="btn btn-primary" onclick="mostrarAgregar()">Agregar participante</button>
-  <button id="btnMostrarLista" onclick="mostrarLista()" style="display:none;" class="btn btn-primary">Volver a lista</button>
-</div>
+    <!-- <div class="mb-3 d-flex">
+      <label for="dni-input" class="form-label">Buscar por DNI</label>
+      <input type="text" class="form-control form-control-sm" id="dni-input" >
+      <button class="btn btn-primary" onclick="registrarAsistencia()">Registrar Asistencia</button>
+    </div> -->
+
+    <div class="d-flex justify-content-between mb-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="dni-input" class="col-form-label">Ingrese DNI: </label>
+        </div>
+        <div class="col-auto">
+          <input type="text" id="dni-input" class="form-control is-invalid" aria-describedby="passwordHelpInline" oninput="this.style.borderColor = this.value.length == 8 ? 'green' : 'red'">
+        </div>
+        <div class="col-auto">
+          <span id="passwordHelpInline" class="form-text">
+            El DNI debe tener 8 números.
+          </span>
+        </div>
+      </div>
+      <div class="row g-3 align-items-center">
+        <button id="btnMostrarAgregar" class="btn btn-primary" onclick="mostrarAgregar()">Agregar participante</button>
+        <button id="btnMostrarLista" onclick="mostrarLista()" style="display:none;" class="btn btn-primary">Volver a lista</button>
+      </div>
+    </div>
+
+
 
 <!-- <div id="formAgregar" style="display:none; margin-top:20px; padding: 10px; border: 1px solid #ccc; background: #fafafa;">
   <h3>Agregar nuevo participante</h3>
@@ -78,6 +98,29 @@
   <div id="mensaje"></div>
   <div id="tabla-container"></div>
   <button id="descargar-btn" style="display:none" class="btn btn-primary" onclick="descargarExcel()">Descargar Excel actualizado</button>
+
+<script>
+  // Escucha cuando se presiona una tecla dentro del input
+  document.getElementById("dni-input").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      registrarAsistencia();
+    }
+  });
+
+  // Tu función para registrar asistencia
+  function registrarAsistencia() {
+    const dni = document.getElementById("dni-input").value;
+    
+    if (dni.length !== 8 || isNaN(dni)) {
+      alert("Por favor ingrese un DNI válido de 8 dígitos.");
+      return;
+    }
+
+    // Lógica de asistencia
+    alert("Asistencia registrada para el DNI: " + dni);
+  }
+</script>
+
 
   <script src="asistencia.js"></script>
   <script>
