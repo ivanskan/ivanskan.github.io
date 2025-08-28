@@ -107,10 +107,10 @@ function descargarExcel() {
   XLSX.writeFile(nuevoLibro, 'asistencia_actualizada.xlsx');
 }
 
-window.addEventListener('beforeunload', function (e) {
-  if (data.length > 0) {
-    e.preventDefault();
-    e.returnValue = ''; // Mostrará el mensaje de advertencia en la mayoría de navegadores
-  }
-});
+// window.addEventListener('beforeunload', function (e) {
+//   if (data.length > 0) {
+//     e.preventDefault();
+//     e.returnValue = ''; // Mostrará el mensaje de advertencia en la mayoría de navegadores
+//   }
+// });
 
