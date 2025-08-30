@@ -3,6 +3,7 @@ let workbook, sheet, data = [];
 const inputExcel = document.getElementById('input-excel');
 const tablaContainer = document.getElementById('tabla-container');
 const mensaje = document.getElementById('mensaje');
+let sortConfig = { columna: null, asc: true };
 
 // ======== EVENTOS ========
 inputExcel.addEventListener('change', importarExcel);
@@ -16,6 +17,16 @@ document.getElementById("form-participante").addEventListener("submit", e => {
   agregarParticipante();
 });
 document.getElementById("descargar-btn").addEventListener("click", descargarExcel);
+
+// ======== FUNCIONES AUXILIARES ========
+function capitalizarTexto(texto) {
+  if (typeof texto !== "string") return texto;
+  return texto
+    .toLowerCase()
+    .split(" ")
+    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+    .join(" ");
+}
 
 // ======== FUNCIONES PRINCIPALES ========
 
@@ -41,13 +52,27 @@ function importarExcel(e) {
   reader.readAsBinaryString(file);
 }
 
-// Mostrar tabla de participantes
+// Mostrar tabla
 function mostrarTabla(lista) {
   if (!lista.length) return;
 
-  let html = `<table class="table table-bordered"><thead><tr>`;
+  let html = `<table class="table table-bordered align-middle text-start">
+    <thead class="table-light"><tr>`;
+
   const headers = Object.keys(lista[0]);
-  headers.forEach(col => html += `<th>${col}</th>`);
+  headers.forEach(col => {
+    let sortIcon = "";
+    const columnasOrdenables = ["ITEM", "DNI", "Apellidos y Nombres", "EMPRESA", "Asistencia"];
+
+    if (sortConfig.columna === col) {
+      sortIcon = sortConfig.asc ? " ↑" : " ↓";
+    }
+
+    // ITEM un poco más grande
+    const style = col === "ITEM" ? "style='font-size: 1.1rem; font-weight: bold;'" : "";
+
+    html += `<th class="text-uppercase sortable" data-col="${col}" ${style}>${col}${sortIcon}</th>`;
+  });
   html += `</tr></thead><tbody>`;
 
   lista.forEach(row => {
@@ -55,7 +80,6 @@ function mostrarTabla(lista) {
     headers.forEach(col => {
       let val = row[col];
 
-      // Convertir fecha numérica de Excel
       if (col === 'Fecha' && typeof val === 'number') {
         const excelDate = new Date((val - 25569) * 86400 * 1000);
         const day = String(excelDate.getDate()).padStart(2, '0');
@@ -64,13 +88,55 @@ function mostrarTabla(lista) {
         val = `${day}-${month}-${year}`;
       }
 
-      html += `<td>${val}</td>`;
-    });
+      if (typeof val === "string" && col !== "ITEM" && col !== "DNI") {
+        val = capitalizarTexto(val);
+      }
+
+       // Agregar clase especial si es FECHA
+    const tdClass = (col === "Fecha") ? "td-fecha" : "";
+    html += `<td class="${tdClass}">${val}</td>`;
+      });
     html += `</tr>`;
   });
 
   html += `</tbody></table>`;
   tablaContainer.innerHTML = html;
+
+  // Eventos ordenar
+  document.querySelectorAll("th.sortable").forEach(th => {
+    th.style.cursor = "pointer"; // siempre cursor pointer
+    th.addEventListener("click", () => {
+      const col = th.dataset.col;
+      const columnasOrdenables = ["ITEM", "DNI", "Apellidos y Nombres", "EMPRESA", "Asistencia"];
+      if (columnasOrdenables.includes(col)) {
+        ordenarTabla(col);
+      }
+    });
+  });
+}
+
+// Ordenar tabla
+function ordenarTabla(columna) {
+  if (sortConfig.columna === columna) {
+    sortConfig.asc = !sortConfig.asc;
+  } else {
+    sortConfig.columna = columna;
+    sortConfig.asc = true;
+  }
+
+  data.sort((a, b) => {
+    let valA = a[columna];
+    let valB = b[columna];
+
+    if (typeof valA === "string") valA = valA.toLowerCase();
+    if (typeof valB === "string") valB = valB.toLowerCase();
+
+    if (valA < valB) return sortConfig.asc ? -1 : 1;
+    if (valA > valB) return sortConfig.asc ? 1 : -1;
+    return 0;
+  });
+
+  mostrarTabla(data);
 }
 
 // Registrar asistencia
@@ -139,9 +205,9 @@ function agregarParticipante() {
   const nuevo = {
     ITEM: data.length + 1,
     DNI: dni,
-    "Apellidos y Nombres": nombre,
-    "Puesto de trabajo": puesto,
-    EMPRESA: empresa,
+    "Apellidos y Nombres": capitalizarTexto(nombre),
+    "Puesto de trabajo": capitalizarTexto(puesto),
+    EMPRESA: capitalizarTexto(empresa),
     Fecha: fecha,
     Asistencia: ""
   };
@@ -153,7 +219,7 @@ function agregarParticipante() {
   mostrarLista();
 }
 
-// Descargar Excel actualizado
+// Descargar Excel
 function descargarExcel() {
   const nuevaHoja = XLSX.utils.json_to_sheet(data);
   const nuevoLibro = XLSX.utils.book_new();
@@ -180,7 +246,7 @@ function mostrarLista() {
   document.getElementById("btnMostrarLista").classList.add("d-none");
 }
 
-// Advertencia al cerrar si hay datos cargados
+// Advertencia antes de salir
 window.addEventListener('beforeunload', e => {
   if (data.length > 0) {
     e.preventDefault();

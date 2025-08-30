@@ -1,15 +1,34 @@
 /* ======== ESTILOS GENERALES ======== */
 body {
     font-family: 'Segoe UI', sans-serif;
-    padding: 20px;
+    /* padding: 20px;    */
     background-color: #f9f9f9;
 }
 
 /* ======== TABLAS ======== */
 
+
 th {
-    color: rgb(33, 85, 180);
-    background: red;
+  color: rgb(33, 85, 180);
+  background: red;
+  text-transform: uppercase;
+  white-space: nowrap; /* evita saltos de línea */
+}
+
+/* Datos: capitalizar primera letra de cada palabra */
+td {
+  text-transform: capitalize;
+}
+
+/* ITEM un poquito más ancho */
+.th-item {
+  min-width: 70px; /* puedes ajustar a 80px si aún se ve justo */
+  text-align: center;
+}
+
+/* Evitar salto de línea en la columna FECHA */
+.td-fecha {
+  white-space: nowrap;
 }
 
 tr:nth-child(even) {
@@ -29,4 +48,8 @@ tr:hover {
 /* ======== UTILIDADES ======== */
 .d-none {
     display: none !important;
+}
+
+.pointer {
+  cursor: pointer;
 }
