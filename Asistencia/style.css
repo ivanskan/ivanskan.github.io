@@ -1,12 +1,10 @@
 /* ======== ESTILOS GENERALES ======== */
 body {
     font-family: 'Segoe UI', sans-serif;
-    /* padding: 20px;    */
     background-color: #f9f9f9;
 }
 
 /* ======== TABLAS ======== */
-
 
 th {
   color: rgb(33, 85, 180);
@@ -37,12 +35,6 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #e6f7ff;
-}
-
-/* ======== MENSAJES ======== */
-#mensaje {
-    margin-top: 25px;
-    font-weight: bold;
 }
 
 /* ======== UTILIDADES ======== */

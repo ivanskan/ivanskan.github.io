@@ -12,81 +12,95 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
         crossorigin="anonymous">
 </head>
-<body class="container px-0">
+<body class="container-fluid px-2">
 
-  <h2 class="mt-3 mb-4 text-center">LISTA DE ASISTENCIA</h2>
+  <div class="row">
+    <div class="col-12 col-lg-10 mx-auto">
 
-  <!-- Cargar Excel -->
-  <div class="mb-3 col-12 col-md-4">
-    <input class="form-control form-control-sm" type="file" id="input-excel" accept=".xlsx">
-  </div>
+      <h2 class="mt-3 mb-5 text-center">LISTA DE ASISTENCIA ERS</h2>
 
-  <!-- Contenedor dinámico de registros -->
-  <div id="registro"></div>
-
-  <!-- Barra de búsqueda y acciones -->
-  <div class="d-flex justify-content-between mb-4 mt-4">
-    <div class="row g-3 align-items-center">
-      <div class="col-auto">
-        <label for="dni-input" class="col-form-label">Ingrese DNI: </label>
+      <!-- Cargar Excel -->
+      <div class="mb-3 col-12 col-md-4">
+        <input class="form-control form-control-sm" type="file" id="input-excel" accept=".xlsx">
       </div>
-      <div class="col-auto">
-        <div class="d-flex">
-          <input type="text" id="dni-input" class="form-control" maxlength="8">
-          <button class="btn btn-primary mx-2" onclick="registrarAsistencia()">Registrar</button>
+
+      <!-- Contenedor dinámico de registros -->
+      <div id="registro"></div>
+
+      <!-- Barra de búsqueda y acciones -->
+
+      <div class="row mb-4 mt-4 ">
+        <!-- Columna izquierda: DNI -->
+        <div class="col-12 col-md-6">
+          <div class="input-group">
+            <span class="input-group-text">Ingrese DNI:</span>
+            <input type="text" id="dni-input" class="form-control" maxlength="8">
+            <button class="btn btn-primary ms-1" onclick="registrarAsistencia()">Registrar</button>
+          </div>
+        </div>
+
+        <!-- Columna derecha: Botones -->
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+          <div class="d-flex justify-content-md-end">
+            <button id="btnMostrarAgregar" class="btn btn-primary">Agregar participante</button>
+            <button id="btnMostrarLista" class="btn btn-primary d-none">Volver a lista</button>
+          </div>
         </div>
       </div>
-    
+
+      <!-- Formulario Agregar participante -->
+      <div id="formAgregar" class="d-none">
+        <h4 class="my-4">Nuevo Participante</h4>
+        <form id="form-participante">
+          <div class="row mb-3">
+            <label for="inputNuevoDNI" class="col-sm-2 col-form-label">DNI</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputNuevoDNI" maxlength="8">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputNuevoNombre" class="col-sm-2 col-form-label">Apellidos y Nombres</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputNuevoNombre">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputNuevoPuesto" class="col-sm-2 col-form-label">Puesto</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputNuevoPuesto">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputNuevoEmpresa" class="col-sm-2 col-form-label">Empresa</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputNuevoEmpresa">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputNuevoCurso" class="col-sm-2 col-form-label">Curso</label>
+            <div class="col-sm-10">
+              <select class="form-select" id="inputNuevoCurso" aria-label="Default select example">
+                <option selected value="">Seleccionar Curso...</option>
+                <option value="Inducción General">Inducción General</option>
+                <option value="IPERC">IPERC</option>
+                <option value="Trabajos en Altura">Trabajos en Altura</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-responsive">
+        <div id="tabla-container"></div>
+      </div>
+
+      <!-- Descargar Excel -->
+      <button id="descargar-btn" class="btn btn-primary my-3 d-none">Descargar Excel</button>
+
     </div>
-    <div class="row align-items-center">
-      <button id="btnMostrarAgregar" class="btn btn-primary">Agregar participante</button>
-      <button id="btnMostrarLista" class="btn btn-primary d-none">Volver a lista</button>
-    </div>
   </div>
-
-  <!-- Formulario Agregar participante -->
-  <div id="formAgregar" class="d-none">
-    <form id="form-participante">
-      <div class="row mb-3">
-        <label for="inputNuevoDNI" class="col-sm-2 col-form-label">DNI</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputNuevoDNI" maxlength="8">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="inputNuevoNombre" class="col-sm-2 col-form-label">Apellidos y Nombres</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputNuevoNombre">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="inputNuevoPuesto" class="col-sm-2 col-form-label">Puesto</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputNuevoPuesto">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="inputNuevoEmpresa" class="col-sm-2 col-form-label">Empresa</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputNuevoEmpresa">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="inputNuevoFecha" class="col-sm-2 col-form-label">Fecha</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputNuevoFecha" placeholder="dd-mm-yyyy">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
-  </div>
-
-  <!-- Mensajes y tabla -->
-  <div id="mensaje"></div>
-  <div id="tabla-container"></div>
-
-  <!-- Descargar Excel -->
-  <button id="descargar-btn" class="btn btn-primary my-3 d-none">Descargar Excel</button>
 
   <!-- Scripts -->
   <script src="app.js"></script>
