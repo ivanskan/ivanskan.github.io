@@ -67,7 +67,74 @@ function importarExcel(e) {
   reader.readAsBinaryString(file);
 }
 
+
 // Mostrar tabla
+// function mostrarTabla(lista) {
+//   if (!lista.length) return;
+
+//   let html = `<table class="table table-bordered align-middle text-start">
+//     <thead class="table-light"><tr>`;
+
+//   const headers = Object.keys(lista[0]);
+
+//   // ✅ Forzamos ITEM como primera columna fija
+//   html += `<th class="text-uppercase" style="font-weight: bold;">ITEM</th>`;
+
+//   headers.forEach(col => {
+//     if (col === "ITEM") return; // Evitar duplicar si existe
+//     let sortIcon = "";
+//     const columnasOrdenables = ["DNI", "APELLIDOS Y NOMBRES", "PUESTO DE TRABAJO","EMPRESA", "CURSO", "FECHA","ASISTENCIA"];
+
+//     if (sortConfig.columna === col) {
+//       sortIcon = sortConfig.asc ? " ↑" : " ↓";
+//     }
+
+//     html += `<th class="text-uppercase sortable" data-col="${col}" style="font-weight: bold;">${col}${sortIcon}</th>`;
+//   });
+//   html += `</tr></thead><tbody>`;
+
+//   // ✅ Ahora numeramos con el índice (i + 1)
+//   lista.forEach((row, i) => {
+//     html += `<tr>`;
+//     html += `<td>${i + 1}</td>`; // ITEM fijo
+
+//     headers.forEach(col => {
+//       if (col === "ITEM") return; // ya no usamos el campo ITEM de data
+//       let val = row[col];
+
+//       if (col === 'FECHA') {
+//         val = formatearFechaExcel(val);
+//         if (!val) val = fechaActual();
+//       }
+
+//       if (typeof val === "string" && col !== "DNI" && col !== "FECHA") {
+//         val = capitalizarTexto(val);
+//       }
+
+//       const tdClass = (col === "FECHA") ? "td-fecha" : "";
+//       html += `<td class="${tdClass}">${val}</td>`;
+//     });
+//     html += `</tr>`;
+//   });
+
+//   html += `</tbody></table>`;
+//   tablaContainer.innerHTML = html;
+
+//   // Eventos ordenar
+//   document.querySelectorAll("th.sortable").forEach(th => {
+//     th.style.cursor = "pointer";
+//     th.addEventListener("click", () => {
+//       const col = th.dataset.col;
+//       const columnasOrdenables = ["DNI", "APELLIDOS Y NOMBRES", "PUESTO DE TRABAJO", "EMPRESA", "CURSO", "FECHA","ASISTENCIA"];
+//       if (columnasOrdenables.includes(col)) {
+//         ordenarTabla(col);
+//       }
+//     });
+//   });
+// }
+
+// Mostrar tabla
+
 function mostrarTabla(lista) {
   if (!lista.length) return;
 
@@ -164,13 +231,14 @@ function registrarAsistencia() {
   }
 
   let encontrado = false, yaRegistrado = false;
-  let nombre = '', empresa = '';
+  let nombre = '', empresa = '', curso = '';
 
   data = data.map(row => {
     if (row.DNI == dni) {
       encontrado = true;
       nombre = row['APELLIDOS Y NOMBRES'] || 'Sin nombre';
       empresa = row.EMPRESA || 'Sin empresa';
+      curso = row.CURSO || 'Sin curso';
 
       if (row.ASISTENCIA === 'Presente') {
         yaRegistrado = true;
@@ -183,9 +251,9 @@ function registrarAsistencia() {
 
   if (encontrado) {
     if (yaRegistrado) {
-      alert(`⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}`);
+      alert(`⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`);
     } else {
-      alert(`✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}`);
+      alert(`✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`);
     }
     mostrarTabla(data);
   } else {
@@ -194,6 +262,7 @@ function registrarAsistencia() {
 
   document.getElementById('dni-input').value = '';
 }
+
 
 // Agregar participante manualmente
 function agregarParticipante() {
