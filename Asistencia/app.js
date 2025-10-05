@@ -23,17 +23,17 @@ function capitalizarTexto(texto) {
   return texto
     .toLowerCase()
     .split(" ")
-    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+    .map(p => p.charAt(0).toUpperCase() + p.slice(1))
     .join(" ");
 }
 
 function formatearFechaExcel(val) {
   if (typeof val === "number") {
     const excelDate = new Date((val - 25569) * 86400 * 1000);
-    const day = String(excelDate.getDate()).padStart(2, '0');
-    const month = String(excelDate.getMonth() + 1).padStart(2, '0');
-    const year = excelDate.getFullYear();
-    return `${day}-${month}-${year}`;
+    const d = String(excelDate.getDate()).padStart(2, '0');
+    const m = String(excelDate.getMonth() + 1).padStart(2, '0');
+    const y = excelDate.getFullYear();
+    return `${d}-${m}-${y}`;
   }
   return val;
 }
@@ -42,6 +42,18 @@ function fechaActual() {
   const hoy = new Date();
   return `${String(hoy.getDate()).padStart(2, "0")}-${String(hoy.getMonth() + 1).padStart(2, "0")}-${hoy.getFullYear()}`;
 }
+
+// ======== ORDEN FIJO DE COLUMNAS ========
+const COLUMNAS_FIJAS = [
+  "ITEM",
+  "DNI",
+  "APELLIDOS Y NOMBRES",
+  "CURSO",
+  "EMPRESA",
+  "PUESTO DE TRABAJO",
+  "FECHA",
+  "ASISTENCIA"
+];
 
 // ======== FUNCIONES PRINCIPALES ========
 
@@ -56,8 +68,14 @@ function importarExcel(e) {
     sheet = workbook.Sheets[sheetName];
     data = XLSX.utils.sheet_to_json(sheet, { defval: '' });
 
-    // ✅ Asegurar columna ASISTENCIA
-    data = data.map(row => ({ ...row, ASISTENCIA: row.ASISTENCIA || '' }));
+    data = data.map((row, i) => {
+      const fila = {};
+      COLUMNAS_FIJAS.forEach((col, idx) => {
+        if (col === "ITEM") fila[col] = i + 1;
+        else fila[col] = row[col] ?? "";
+      });
+      return fila;
+    });
 
     mostrarTabla(data);
     document.getElementById('registro').classList.remove('d-none');
@@ -67,110 +85,36 @@ function importarExcel(e) {
   reader.readAsBinaryString(file);
 }
 
-
 // Mostrar tabla
-// function mostrarTabla(lista) {
-//   if (!lista.length) return;
-
-//   let html = `<table class="table table-bordered align-middle text-start">
-//     <thead class="table-light"><tr>`;
-
-//   const headers = Object.keys(lista[0]);
-
-//   // ✅ Forzamos ITEM como primera columna fija
-//   html += `<th class="text-uppercase" style="font-weight: bold;">ITEM</th>`;
-
-//   headers.forEach(col => {
-//     if (col === "ITEM") return; // Evitar duplicar si existe
-//     let sortIcon = "";
-//     const columnasOrdenables = ["DNI", "APELLIDOS Y NOMBRES", "PUESTO DE TRABAJO","EMPRESA", "CURSO", "FECHA","ASISTENCIA"];
-
-//     if (sortConfig.columna === col) {
-//       sortIcon = sortConfig.asc ? " ↑" : " ↓";
-//     }
-
-//     html += `<th class="text-uppercase sortable" data-col="${col}" style="font-weight: bold;">${col}${sortIcon}</th>`;
-//   });
-//   html += `</tr></thead><tbody>`;
-
-//   // ✅ Ahora numeramos con el índice (i + 1)
-//   lista.forEach((row, i) => {
-//     html += `<tr>`;
-//     html += `<td>${i + 1}</td>`; // ITEM fijo
-
-//     headers.forEach(col => {
-//       if (col === "ITEM") return; // ya no usamos el campo ITEM de data
-//       let val = row[col];
-
-//       if (col === 'FECHA') {
-//         val = formatearFechaExcel(val);
-//         if (!val) val = fechaActual();
-//       }
-
-//       if (typeof val === "string" && col !== "DNI" && col !== "FECHA") {
-//         val = capitalizarTexto(val);
-//       }
-
-//       const tdClass = (col === "FECHA") ? "td-fecha" : "";
-//       html += `<td class="${tdClass}">${val}</td>`;
-//     });
-//     html += `</tr>`;
-//   });
-
-//   html += `</tbody></table>`;
-//   tablaContainer.innerHTML = html;
-
-//   // Eventos ordenar
-//   document.querySelectorAll("th.sortable").forEach(th => {
-//     th.style.cursor = "pointer";
-//     th.addEventListener("click", () => {
-//       const col = th.dataset.col;
-//       const columnasOrdenables = ["DNI", "APELLIDOS Y NOMBRES", "PUESTO DE TRABAJO", "EMPRESA", "CURSO", "FECHA","ASISTENCIA"];
-//       if (columnasOrdenables.includes(col)) {
-//         ordenarTabla(col);
-//       }
-//     });
-//   });
-// }
-
-// Mostrar tabla
-
 function mostrarTabla(lista) {
   if (!lista.length) return;
 
   let html = `<table class="table table-bordered align-middle text-start">
     <thead class="table-light"><tr>`;
 
-  const headers = Object.keys(lista[0]);
-  headers.forEach(col => {
+  COLUMNAS_FIJAS.forEach(col => {
     let sortIcon = "";
-    const columnasOrdenables = ["ITEM", "DNI", "APELLIDOS Y NOMBRES", "PUESTO DE TRABAJO","EMPRESA", "CURSO", "FECHA","ASISTENCIA"];
-
-    if (sortConfig.columna === col) {
-      sortIcon = sortConfig.asc ? " ↑" : " ↓";
-    }
-
-    html += `<th class="text-uppercase sortable" data-col="${col}" style="font-weight: bold;">${col}${sortIcon}</th>`;
+    if (sortConfig.columna === col) sortIcon = sortConfig.asc ? " ↑" : " ↓";
+    html += `<th class="text-uppercase sortable" data-col="${col}" style="font-weight:bold;">${col}${sortIcon}</th>`;
   });
+
   html += `</tr></thead><tbody>`;
 
-  lista.forEach(row => {
+  lista.forEach((row, i) => {
     html += `<tr>`;
-    headers.forEach(col => {
-      let val = row[col];
+    COLUMNAS_FIJAS.forEach(col => {
+      let val = row[col] ?? "";
 
-      // ✅ Convertir fecha de Excel (columna FECHA siempre en mayúsculas)
-      if (col === 'FECHA') {
+      if (col === "ITEM") val = i + 1;
+      if (col === "FECHA") {
         val = formatearFechaExcel(val);
         if (!val) val = fechaActual();
       }
 
-      // Capitalizar valores (excepto ITEM y DNI)
-      if (typeof val === "string" && col !== "ITEM" && col !== "DNI" && col !== "FECHA") {
+      if (typeof val === "string" && !["ITEM", "DNI", "FECHA"].includes(col)) {
         val = capitalizarTexto(val);
       }
 
-      // Clase especial para FECHA
       const tdClass = (col === "FECHA") ? "td-fecha" : "";
       html += `<td class="${tdClass}">${val}</td>`;
     });
@@ -180,24 +124,18 @@ function mostrarTabla(lista) {
   html += `</tbody></table>`;
   tablaContainer.innerHTML = html;
 
-  // Eventos ordenar
   document.querySelectorAll("th.sortable").forEach(th => {
-    th.style.cursor = "pointer"; // siempre cursor pointer
-    th.addEventListener("click", () => {
-      const col = th.dataset.col;
-      const columnasOrdenables = ["ITEM", "DNI", "APELLIDOS Y NOMBRES", "PUESTO DE TRABAJO", "EMPRESA", "CURSO", "FECHA","ASISTENCIA"];
-      if (columnasOrdenables.includes(col)) {
-        ordenarTabla(col);
-      }
-    });
+    th.style.cursor = "pointer";
+    th.addEventListener("click", () => ordenarTabla(th.dataset.col));
   });
 }
 
 // Ordenar tabla
 function ordenarTabla(columna) {
-  if (sortConfig.columna === columna) {
-    sortConfig.asc = !sortConfig.asc;
-  } else {
+  if (!COLUMNAS_FIJAS.includes(columna)) return;
+
+  if (sortConfig.columna === columna) sortConfig.asc = !sortConfig.asc;
+  else {
     sortConfig.columna = columna;
     sortConfig.asc = true;
   }
@@ -224,7 +162,8 @@ function ordenarTabla(columna) {
 
 // Registrar asistencia
 function registrarAsistencia() {
-  const dni = document.getElementById('dni-input').value.trim();
+  const dniInput = document.getElementById('dni-input');
+  const dni = dniInput.value.trim();
   if (dni.length !== 8 || isNaN(dni)) {
     alert("Por favor ingrese un DNI válido");
     return;
@@ -240,29 +179,23 @@ function registrarAsistencia() {
       empresa = row.EMPRESA || 'Sin empresa';
       curso = row.CURSO || 'Sin curso';
 
-      if (row.ASISTENCIA === 'Presente') {
-        yaRegistrado = true;
-      } else {
-        row.ASISTENCIA = 'Presente';
-      }
+      if (row.ASISTENCIA === 'Presente' || row.ASISTENCIA === 'Adicional' ) yaRegistrado = true;
+      else row.ASISTENCIA = 'Presente';
     }
     return row;
   });
 
   if (encontrado) {
-    if (yaRegistrado) {
-      alert(`⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`);
-    } else {
-      alert(`✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`);
-    }
+    alert(yaRegistrado
+      ? `⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤 ${nombre}\n🏢 ${empresa}\n📚 ${curso}`
+      : `✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 ${nombre}\n🏢 ${empresa}\n📚 ${curso}`);
     mostrarTabla(data);
+    dniInput.value = ''; // limpiar después del registro exitoso
   } else {
     alert(`❌ No se encontró el DNI: ${dni}`);
+    // No limpiar el input si no se encuentra
   }
-
-  document.getElementById('dni-input').value = '';
 }
-
 
 // Agregar participante manualmente
 function agregarParticipante() {
@@ -277,7 +210,7 @@ function agregarParticipante() {
     return;
   }
 
-  if (data.some(row => row.DNI === dni)) {
+  if (data.some(r => r.DNI === dni)) {
     alert("El DNI ya existe en la lista.");
     return;
   }
@@ -286,30 +219,42 @@ function agregarParticipante() {
     ITEM: data.length + 1,
     DNI: dni,
     "APELLIDOS Y NOMBRES": capitalizarTexto(nombre),
-    "PUESTO DE TRABAJO": capitalizarTexto(puesto),
-    EMPRESA: capitalizarTexto(empresa),
     CURSO: capitalizarTexto(curso),
+    EMPRESA: capitalizarTexto(empresa),
+    "PUESTO DE TRABAJO": capitalizarTexto(puesto),
     FECHA: fechaActual(),
-
-    ASISTENCIA: ""
+    ASISTENCIA: "Adicional"
   };
 
   data.push(nuevo);
   mostrarTabla(data);
-  alert("Participante agregado correctamente.");
+  alert("Participante agregado correctamente!");
+
+  // limpiar formularios e input de DNI principal
   document.getElementById("form-participante").reset();
+  document.getElementById("dni-input").value = "";
+
   mostrarLista();
 }
 
 // Descargar Excel
 function descargarExcel() {
-  const nuevaHoja = XLSX.utils.json_to_sheet(data);
-  const nuevoLibro = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(nuevoLibro, nuevaHoja, 'ASISTENCIA');
-  XLSX.writeFile(nuevoLibro, 'asistencia_actualizada.xlsx');
+  const datosMayus = data.map(row => {
+    const nuevo = {};
+    for (let key in row) {
+      let val = row[key];
+      nuevo[key] = typeof val === "string" ? val.toUpperCase() : val;
+    }
+    return nuevo;
+  });
+
+  const hoja = XLSX.utils.json_to_sheet(datosMayus, { header: COLUMNAS_FIJAS });
+  const libro = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(libro, hoja, 'ASISTENCIA');
+  XLSX.writeFile(libro, 'asistencia_actualizada.xlsx');
 }
 
-// Mostrar/ocultar formularios
+// Mostrar / Ocultar formularios
 function mostrarAgregar() {
   document.getElementById("formAgregar").classList.remove("d-none");
   document.getElementById("registro").classList.add("d-none");
