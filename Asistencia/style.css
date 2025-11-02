@@ -45,3 +45,13 @@ tr:hover {
 .pointer {
   cursor: pointer;
 }
+
+/* ======== RESUMEN ======== */
+#resumen {
+  font-size: 0.95rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#resumen b { margin-right: 0.25rem; }

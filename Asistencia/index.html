@@ -25,13 +25,20 @@
       </div>
 
       <!-- Contenedor dinámico de registros -->
-      <div id="registro"></div>
+      <div id="registro" class="d-none"></div>
+
+      <!-- RESUMEN DINÁMICO -->
+      <div id="resumen" class="alert alert-info mt-3 d-none" role="status">
+        <b>Programados:</b> 0 — 
+        <b>Presentes:</b> 0 — 
+        <b>Ausentes:</b> 0 — 
+        <b>Adicionales:</b> 0
+      </div>
 
       <!-- Barra de búsqueda y acciones -->
-
       <div class="row mb-4 mt-4 ">
         <!-- Columna izquierda: DNI -->
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" id="bloque-dni">
           <div class="input-group">
             <span class="input-group-text">Ingrese DNI:</span>
             <input type="text" id="dni-input" class="form-control" maxlength="8">
@@ -55,7 +62,7 @@
           <div class="row mb-3">
             <label for="inputNuevoDNI" class="col-sm-2 col-form-label">DNI</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputNuevoDNI" maxlength="8">
+              <input type="text" class="form-control" id="inputNuevoDNI">
             </div>
           </div>
           <div class="row mb-3">
@@ -82,21 +89,34 @@
               <select class="form-select" id="inputNuevoCurso" aria-label="Default select example">
                 <option selected value="">Seleccionar Curso...</option>
                 <optgroup label="Generales">
-                  <option value="Inducción General">Inducción General</option>
-                  <option value="Seguridad con Herramientas">Seguridad con Herramientas</option>
-                    <option value="Tormentas Eléctricas">Tormentas Eléctricas</option>
-                  <option value="Trabajos en Caliente">Trabajos en Caliente</option>
+                  <option value="INDUCCION GENERAL">INDUCCION GENERAL</option>
+                  <option value="PPCI">PPCI</option>
+                  <option value="PRIMEROS AUXILIOS">PRIMEROS AUXILIOS</option>
+                  <option value="SEGURIDAD CON HERRAMIENTAS">SEGURIDAD CON HERRAMIENTAS</option>
+                  <option value="SEGURIDAD CON VIGIAS">SEGURIDAD CON VIGIAS</option>
+                  <option value="TORMENTAS ELECTRICAS">TORMENTAS ELECTRICAS</option>
+                  <option value="TRABAJOS EN CALIENTE">TRABAJOS EN CALIENTE</option>
                 </optgroup>
                 <optgroup label="Alto Riesgo">
-                  <option value="Aislamieno de Energía">Aislamieno de energía</option>
-                   <option value="Barricadas y Zonas de Exclusión">Barricadas y Zonas de Exclusión</option>
-                   <option value="Gestión de la Fatiga Operativos">Gestión de la Fatiga Operativos</option>
-                     <option value="Gestión de la Fatiga Supervisores">Gestión de la Fatiga Supervisores</option>
-                   <option value="Gestión de Riesgos">Gestión de Riesgos</option>
-                   <option value="FRM Operativos">FRM operativos</option>
-                   <option value="FRM Supervisores">FRM Supervisores</option>
-                   <option value="Matpel Advertencia">Matpel Advertencia</option>
-                   <option value="Trabajos en Altura">Trabajos en Altura</option>
+                  <option value="AISLAMIENTO DE ENERGIA">AISLAMIENTO DE ENERGIA</option>
+                  <option value="BARRICADAS Y ZONAS DE EXCLUSION">BARRICADAS Y ZONAS DE EXCLUSION</option>
+                  <option value="FRM OPERATIVOS">FRM OPERATIVOS</option>
+                  <option value="FRM SUPERVISORES">FRM SUPERVISORES</option>
+                  <option value="GESTION DE LA FATIGA OPERATIVO">GESTION DE LA FATIGA OPERATIVO</option>
+                  <option value="GESTION DE LA FATIGA SUPERVISORES">GESTION DE LA FATIGA SUPERVISORES</option>
+                  <option value="GESTION DE RIESGOS">GESTION DE RIESGOS</option>
+                  <option value="MATPEL ADVERTENCIA">MATPEL ADVERTENCIA</option>
+                  <option value="MATPEL COMANDANTE DE INCIDENTES">MATPEL COMANDANTE DE INCIDENTES</option>
+                  <option value="MATPEL ESPECIALISTA">MATPEL ESPECIALISTA</option>
+                  <option value="MATPEL TECNICO">MATPEL TECNICO</option>
+                  <option value="RESCATE ELECTRICO Y RESUCITACION">RESCATE ELECTRICO Y RESUCITACION</option>
+                  <option value="RESCATE EN TRABAJOS CERCA A FUENTES DE AGUA">RESCATE EN TRABAJOS CERCA A FUENTES DE AGUA</option>
+                  <option value="RESPUESTA A EMERGENCIAS CON CIANURO">RESPUESTA A EMERGENCIAS CON CIANURO</option>
+                  <option value="SUPERVISOR DE IZAJE">SUPERVISOR DE IZAJE</option>
+                  <option value="TRABAJOS CON GRUAS E IZAJE">TRABAJOS CON GRUAS E IZAJE</option>
+                  <option value="TRABAJOS EN ALTURA">TRABAJOS EN ALTURA</option>
+                  <option value="TRABAJOS EN ESPACIOS CONFINADOS">TRABAJOS EN ESPACIOS CONFINADOS</option>
+                  <option value="TRABAJOS EN EXCAVACIONES Y ZANJAS">TRABAJOS EN EXCAVACIONES Y ZANJAS</option>
                 </optgroup>
               </select>
             </div>

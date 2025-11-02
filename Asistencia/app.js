@@ -66,20 +66,27 @@ function importarExcel(e) {
     workbook = XLSX.read(ev.target.result, { type: 'binary' });
     const sheetName = workbook.SheetNames[0];
     sheet = workbook.Sheets[sheetName];
-    data = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+    let filas = XLSX.utils.sheet_to_json(sheet, { defval: '' });
 
-    data = data.map((row, i) => {
+    data = filas.map((row, i) => {
       const fila = {};
       COLUMNAS_FIJAS.forEach((col, idx) => {
         if (col === "ITEM") fila[col] = i + 1;
         else fila[col] = row[col] ?? "";
       });
+      // marcar que viene del excel
+      fila.fuente = "excel";
+      // asegurar que ASISTENCIA tenga valor string (puede estar vacío)
+      fila.ASISTENCIA = fila.ASISTENCIA || "";
       return fila;
     });
 
     mostrarTabla(data);
     document.getElementById('registro').classList.remove('d-none');
     document.getElementById('descargar-btn').classList.remove('d-none');
+    document.getElementById('resumen').classList.remove('d-none');
+
+    actualizarResumen();
   };
 
   reader.readAsBinaryString(file);
@@ -87,7 +94,10 @@ function importarExcel(e) {
 
 // Mostrar tabla
 function mostrarTabla(lista) {
-  if (!lista.length) return;
+  if (!lista.length) {
+    tablaContainer.innerHTML = `<div class="alert alert-secondary">No hay datos para mostrar.</div>`;
+    return;
+  }
 
   let html = `<table class="table table-bordered align-middle text-start">
     <thead class="table-light"><tr>`;
@@ -101,7 +111,12 @@ function mostrarTabla(lista) {
   html += `</tr></thead><tbody>`;
 
   lista.forEach((row, i) => {
-    html += `<tr>`;
+    // aplicar clase para filas adicionales/presentes si quieres destacarlas (opcional)
+    let filaClase = "";
+    if (row.ASISTENCIA === "Presente") filaClase = "table-success";
+    else if (row.ASISTENCIA === "Adicional") filaClase = "table-warning";
+
+    html += `<tr class="${filaClase}">`;
     COLUMNAS_FIJAS.forEach(col => {
       let val = row[col] ?? "";
 
@@ -158,13 +173,14 @@ function ordenarTabla(columna) {
   });
 
   mostrarTabla(data);
+  actualizarResumen();
 }
 
 // Registrar asistencia
 function registrarAsistencia() {
   const dniInput = document.getElementById('dni-input');
   const dni = dniInput.value.trim();
-  if (dni.length !== 8 || isNaN(dni)) {
+  if (dni.length == 0|| dni=="") {
     alert("Por favor ingrese un DNI válido");
     return;
   }
@@ -187,10 +203,14 @@ function registrarAsistencia() {
 
   if (encontrado) {
     alert(yaRegistrado
-      ? `⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤 ${nombre}\n🏢 ${empresa}\n📚 ${curso}`
-      : `✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 ${nombre}\n🏢 ${empresa}\n📚 ${curso}`);
+      ? `⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤  Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 ${curso}`
+      : `✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`);
     mostrarTabla(data);
-    dniInput.value = ''; // limpiar después del registro exitoso
+    if (!yaRegistrado) {
+      // limpiar después del registro exitoso (cuando se acaba de marcar presente)
+      dniInput.value = '';
+    }
+    actualizarResumen();
   } else {
     alert(`❌ No se encontró el DNI: ${dni}`);
     // No limpiar el input si no se encuentra
@@ -223,7 +243,8 @@ function agregarParticipante() {
     EMPRESA: capitalizarTexto(empresa),
     "PUESTO DE TRABAJO": capitalizarTexto(puesto),
     FECHA: fechaActual(),
-    ASISTENCIA: "Adicional"
+    ASISTENCIA: "Adicional",
+    fuente: "manual"
   };
 
   data.push(nuevo);
@@ -235,6 +256,7 @@ function agregarParticipante() {
   document.getElementById("dni-input").value = "";
 
   mostrarLista();
+  actualizarResumen();
 }
 
 // Descargar Excel
@@ -242,6 +264,7 @@ function descargarExcel() {
   const datosMayus = data.map(row => {
     const nuevo = {};
     for (let key in row) {
+      if (key === 'fuente') continue; // omitimos campo interno
       let val = row[key];
       nuevo[key] = typeof val === "string" ? val.toUpperCase() : val;
     }
@@ -262,6 +285,8 @@ function mostrarAgregar() {
   document.getElementById("descargar-btn").classList.add("d-none");
   document.getElementById("btnMostrarAgregar").classList.add("d-none");
   document.getElementById("btnMostrarLista").classList.remove("d-none");
+  document.getElementById("bloque-dni").classList.add("invisible");
+
 }
 
 function mostrarLista() {
@@ -271,6 +296,8 @@ function mostrarLista() {
   document.getElementById("descargar-btn").classList.remove("d-none");
   document.getElementById("btnMostrarAgregar").classList.remove("d-none");
   document.getElementById("btnMostrarLista").classList.add("d-none");
+  document.getElementById("bloque-dni").classList.remove("invisible");
+
 }
 
 // Advertencia antes de salir
@@ -280,3 +307,21 @@ window.addEventListener('beforeunload', e => {
     e.returnValue = '';
   }
 });
+
+// ======== RESUMEN DINÁMICO ========
+function actualizarResumen() {
+  const resumenEl = document.getElementById('resumen');
+  if (!resumenEl) return;
+
+  const programados = data.filter(r => r.fuente === 'excel').length;
+  const presentes = data.filter(r => r.ASISTENCIA === 'Presente').length;
+  const adicionales = data.filter(r => r.fuente === 'manual' || r.ASISTENCIA === 'Adicional').length;
+  const ausentes = Math.max(0, programados - presentes);
+
+  resumenEl.innerHTML = `
+    <span><b>Programados:</b> ${programados}</span>
+    <span><b>Presentes:</b> ${presentes}</span>
+    <span><b>Ausentes:</b> ${ausentes}</span>
+    <span><b>Adicionales:</b> ${adicionales}</span>
+  `;
+}
