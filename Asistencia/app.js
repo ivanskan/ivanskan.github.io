@@ -78,6 +78,8 @@ function importarExcel(e) {
       fila.fuente = "excel";
       // asegurar que ASISTENCIA tenga valor string (puede estar vacío)
       fila.ASISTENCIA = fila.ASISTENCIA || "";
+      // normalizar curso a mayúsculas (para agrupar correctamente)
+      fila.CURSO = (fila.CURSO || "").toString().trim();
       return fila;
     });
 
@@ -96,6 +98,7 @@ function importarExcel(e) {
 function mostrarTabla(lista) {
   if (!lista.length) {
     tablaContainer.innerHTML = `<div class="alert alert-secondary">No hay datos para mostrar.</div>`;
+    actualizarResumen();
     return;
   }
 
@@ -105,13 +108,18 @@ function mostrarTabla(lista) {
   COLUMNAS_FIJAS.forEach(col => {
     let sortIcon = "";
     if (sortConfig.columna === col) sortIcon = sortConfig.asc ? " ↑" : " ↓";
-    html += `<th class="text-uppercase sortable" data-col="${col}" style="font-weight:bold;">${col}${sortIcon}</th>`;
+    html += `<th class="text-uppercase ${col !== "ITEM" ? "sortable" : ""}" 
+          data-col="${col}" 
+          style="font-weight:bold;">
+          ${col}${sortIcon}
+        </th>`;
+
   });
 
   html += `</tr></thead><tbody>`;
 
   lista.forEach((row, i) => {
-    // aplicar clase para filas adicionales/presentes si quieres destacarlas (opcional)
+    // destacar filas según asistencia
     let filaClase = "";
     if (row.ASISTENCIA === "Presente") filaClase = "table-success";
     else if (row.ASISTENCIA === "Adicional") filaClase = "table-warning";
@@ -143,6 +151,9 @@ function mostrarTabla(lista) {
     th.style.cursor = "pointer";
     th.addEventListener("click", () => ordenarTabla(th.dataset.col));
   });
+
+  // cada vez que mostramos la tabla actualizamos el resumen (global + por curso)
+  actualizarResumen();
 }
 
 // Ordenar tabla
@@ -173,14 +184,13 @@ function ordenarTabla(columna) {
   });
 
   mostrarTabla(data);
-  actualizarResumen();
 }
 
 // Registrar asistencia
 function registrarAsistencia() {
   const dniInput = document.getElementById('dni-input');
   const dni = dniInput.value.trim();
-  if (dni.length == 0|| dni=="") {
+  if (dni.length == 0 || dni == "") {
     alert("Por favor ingrese un DNI válido");
     return;
   }
@@ -195,7 +205,7 @@ function registrarAsistencia() {
       empresa = row.EMPRESA || 'Sin empresa';
       curso = row.CURSO || 'Sin curso';
 
-      if (row.ASISTENCIA === 'Presente' || row.ASISTENCIA === 'Adicional' ) yaRegistrado = true;
+      if (row.ASISTENCIA === 'Presente' || row.ASISTENCIA === 'Adicional') yaRegistrado = true;
       else row.ASISTENCIA = 'Presente';
     }
     return row;
@@ -203,14 +213,13 @@ function registrarAsistencia() {
 
   if (encontrado) {
     alert(yaRegistrado
-      ? `⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤  Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 ${curso}`
-      : `✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`);
+      ? `⚠️ Ya registrado:\n\n📌 DNI: ${dni}\n👤  Nombre: ${nombre}\n🏢 Empresa: ${empresa}\n📚 Curso: ${curso}`
+      : `✅ Asistencia registrada:\n\n📌 DNI: ${dni}\n👤 Nombre: ${nombre}\n🏢 ${empresa}\n📚 Curso: ${curso}`);
     mostrarTabla(data);
     if (!yaRegistrado) {
       // limpiar después del registro exitoso (cuando se acaba de marcar presente)
       dniInput.value = '';
     }
-    actualizarResumen();
   } else {
     alert(`❌ No se encontró el DNI: ${dni}`);
     // No limpiar el input si no se encuentra
@@ -256,7 +265,6 @@ function agregarParticipante() {
   document.getElementById("dni-input").value = "";
 
   mostrarLista();
-  actualizarResumen();
 }
 
 // Descargar Excel
@@ -279,25 +287,23 @@ function descargarExcel() {
 
 // Mostrar / Ocultar formularios
 function mostrarAgregar() {
-  document.getElementById("formAgregar").classList.remove("d-none");
-  document.getElementById("registro").classList.add("d-none");
-  tablaContainer.classList.add("d-none");
-  document.getElementById("descargar-btn").classList.add("d-none");
-  document.getElementById("btnMostrarAgregar").classList.add("d-none");
-  document.getElementById("btnMostrarLista").classList.remove("d-none");
-  document.getElementById("bloque-dni").classList.add("invisible");
-
+  document.getElementById("formAgregar").classList.remove('d-none');
+  document.getElementById("registro").classList.add('d-none');
+  tablaContainer.classList.add('d-none');
+  document.getElementById('descargar-btn').classList.add('d-none');
+  document.getElementById('btnMostrarAgregar').classList.add('d-none');
+  document.getElementById('btnMostrarLista').classList.remove('d-none');
+  document.getElementById('bloque-dni').classList.add('invisible');
 }
 
 function mostrarLista() {
-  document.getElementById("formAgregar").classList.add("d-none");
-  document.getElementById("registro").classList.remove("d-none");
-  tablaContainer.classList.remove("d-none");
-  document.getElementById("descargar-btn").classList.remove("d-none");
-  document.getElementById("btnMostrarAgregar").classList.remove("d-none");
-  document.getElementById("btnMostrarLista").classList.add("d-none");
-  document.getElementById("bloque-dni").classList.remove("invisible");
-
+  document.getElementById("formAgregar").classList.add('d-none');
+  document.getElementById("registro").classList.remove('d-none');
+  tablaContainer.classList.remove('d-none');
+  document.getElementById('descargar-btn').classList.remove('d-none');
+  document.getElementById('btnMostrarAgregar').classList.remove('d-none');
+  document.getElementById('btnMostrarLista').classList.add('d-none');
+  document.getElementById('bloque-dni').classList.remove('invisible');
 }
 
 // Advertencia antes de salir
@@ -313,15 +319,45 @@ function actualizarResumen() {
   const resumenEl = document.getElementById('resumen');
   if (!resumenEl) return;
 
+  // Totales globales
   const programados = data.filter(r => r.fuente === 'excel').length;
-  const presentes = data.filter(r => r.ASISTENCIA === 'Presente').length;
+  const asistentes = data.filter(r => r.ASISTENCIA === 'Presente').length;
   const adicionales = data.filter(r => r.fuente === 'manual' || r.ASISTENCIA === 'Adicional').length;
-  const ausentes = Math.max(0, programados - presentes);
+  const faltantes = Math.max(0, programados - asistentes);
 
-  resumenEl.innerHTML = `
+  // Generar resumen por curso (solo programados)
+  // Mapa: curso -> { programados: N, asistentes: M }
+  const mapaCursos = {};
+  data.forEach(r => {
+    const cursoRaw = (r.CURSO || "").toString().trim();
+    const curso = cursoRaw === "" ? null : cursoRaw.toUpperCase();
+    if (!curso) return; // ignorar filas sin curso
+    if (r.fuente === 'excel') {
+      if (!mapaCursos[curso]) mapaCursos[curso] = { programados: 0, asistentes: 0 };
+      mapaCursos[curso].programados += 1;
+      if (r.ASISTENCIA === 'Presente') mapaCursos[curso].asistentes += 1;
+    }
+  });
+
+  // Construir HTML principal
+  let html = `
     <span><b>Programados:</b> ${programados}</span>
-    <span><b>Presentes:</b> ${presentes}</span>
-    <span><b>Ausentes:</b> ${ausentes}</span>
+    <span><b>Asistentes:</b> ${asistentes}</span>
+    <span><b>Faltantes:</b> ${faltantes}</span>
     <span><b>Adicionales:</b> ${adicionales}</span>
   `;
+
+  // Añadir bloque de cursos si existen
+  const cursos = Object.keys(mapaCursos).sort();
+  if (cursos.length) {
+    html += `<div style="width:100%;">`;
+    html += cursos.map(c => {
+      const obj = mapaCursos[c];
+      // mostrar como: CURSO: asistentes / programados
+      return `<span style="margin-right:8px;"><b>${c}</b>: ${obj.asistentes} / ${obj.programados}</span>`;
+    }).join('');
+    html += `</div>`;
+  }
+
+  resumenEl.innerHTML = html;
 }
