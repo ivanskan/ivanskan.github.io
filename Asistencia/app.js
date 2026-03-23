@@ -220,6 +220,7 @@ function registrarAsistencia() {
       // limpiar después del registro exitoso (cuando se acaba de marcar presente)
       dniInput.value = '';
     }
+    dniInput.focus();
   } else {
     alert(`❌ No se encontró el DNI: ${dni}`);
     // No limpiar el input si no se encuentra
