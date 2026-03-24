@@ -1,6 +1,6 @@
 let data = [];
 
-// 📥 Leer Excel
+// Leer Excel
 fetch('data/cursos.xlsx')
   .then(res => res.arrayBuffer())
   .then(buffer => {
@@ -11,7 +11,7 @@ fetch('data/cursos.xlsx')
     console.log("DATA CARGADA:", data);
   });
 
-// 🔄 Convertir fecha Excel
+// Convertir fecha Excel
 function convertirFecha(fecha) {
 
   if (fecha instanceof Date) return fecha;
@@ -40,13 +40,13 @@ function buscar() {
 
   document.getElementById('nombre').innerText = registros[0].NOMBRE;
 
-  // 🏢 Empresa (si no existe, evitar error)
-  document.getElementById('empresa').innerText = registros[0].EMPRESA || "Sin empresa";
+  // Codigo (si no existe, evitar error)
+  document.getElementById('cod').innerText = registros[0].DNI || "";
 
   procesar(registros);
 }
 
-// 📊 Procesar cursos
+// Procesar cursos
 function procesar(registros) {
 
   let total = registros.length;
@@ -103,10 +103,27 @@ function procesar(registros) {
   document.getElementById('porVencer').innerText = porVencer;
 }
 
-// 🔙 Volver
+// Volver
 function volver() {
   document.getElementById('login').style.display = "block";
   document.getElementById('dashboard').style.display = "none";
   document.getElementById('logo').style.display = "none";
   document.getElementById('dni').value = "";
+}
+
+function toggleModo() {
+  const body = document.body;
+  const btn = document.querySelector("#logo button i");
+
+  const modoActual = body.getAttribute("data-bs-theme");
+
+  if (modoActual === "light") {
+    body.setAttribute("data-bs-theme", "dark");
+    btn.classList.remove("bi-moon");
+    btn.classList.add("bi-sun");
+  } else {
+    body.setAttribute("data-bs-theme", "light");
+    btn.classList.remove("bi-sun");
+    btn.classList.add("bi-moon");
+  }
 }
