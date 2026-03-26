@@ -8,7 +8,7 @@ fetch('data/cursos.xlsx')
     const hoja = workbook.Sheets[workbook.SheetNames[0]];
     data = XLSX.utils.sheet_to_json(hoja);
 
-    console.log("DATA CARGADA:", data);
+    // console.log("DATA CARGADA:", data);
   });
 
 // Convertir fecha Excel
