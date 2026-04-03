@@ -6,22 +6,16 @@ fetch('data/cursos.xlsx')
   .then(buffer => {
     const workbook = XLSX.read(buffer);
     const hoja = workbook.Sheets[workbook.SheetNames[0]];
-    data = XLSX.utils.sheet_to_json(hoja);
+    // data = XLSX.utils.sheet_to_json(hoja);
+    data = XLSX.utils.sheet_to_json(hoja, { raw: false });
 
     // console.log("DATA CARGADA:", data);
   });
 
-// Convertir fecha Excel
-function convertirFecha(fecha) {
-
-  if (fecha instanceof Date) return fecha;
-
-  if (typeof fecha === "number") {
-    return new Date((fecha - 25569) * 86400 * 1000);
+  // Convertir fecha Excel
+  function convertirFecha(fecha) {
+    return new Date(fecha);
   }
-
-  return new Date(fecha);
-}
 
 // 🔍 Buscar
 function buscar() {
@@ -89,8 +83,8 @@ function procesar(registros) {
       <tr>
         <td>${r.CURSO}</td>
         <td>${r.EMPRESA || "-"}</td>
-        <td>${fecha.toLocaleDateString()}</td>
-        <td>${vencimiento.toLocaleDateString()}</td>
+        <td>${fecha.toLocaleDateString('es-PE')}</td>
+        <td>${vencimiento.toLocaleDateString('es-PE')}</td>
         <td class="${clase} fw-bold">${estado}</td>
       </tr>
     `;
